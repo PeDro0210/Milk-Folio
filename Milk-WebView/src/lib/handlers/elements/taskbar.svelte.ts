@@ -41,9 +41,11 @@ function taskbarHandler() {
   let innerwidth_changer = (window_inner_width: number) => {
     let new_inner_width = window_inner_width - 335 + "px"; // Adjust the width calculation as needed
 
-    let window_side = document.querySelector(".windows-side") as HTMLElement;
-    window_side.style.setProperty("--window-width", new_inner_width);
+    let window_side = document.querySelector("#windows-side") as HTMLElement;
 
+    if (window_side != null) {
+      window_side.style.setProperty("--window-width", new_inner_width);
+    }
     return new_inner_width;
   };
 

@@ -2,9 +2,9 @@
   import LinkButtons from "./components/link_buttons.svelte";
   import { slide } from "svelte/transition";
   import { onMount } from "svelte";
-  import startMenuHandler from "$handlers/elements/startmenu.svelte";
-  import type { ContentRelatedState } from "$handlers/states/content_related.svelte";
-  import { reactivity_startmenu_state } from "$handlers/contexts/global.svelte";
+  import startMenuHandler from "$handlers/startmenu.svelte";
+  import type { ContentRelatedState } from "$states/content_related.svelte";
+  import { reactivity_startmenu_state } from "$contexts/global.svelte";
 
   let options = { duration: 50, x: "75vh" };
 

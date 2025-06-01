@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import taskbarHandler from "$handlers/elements/taskbar.svelte";
-  import { reactivity_startmenu_state } from "$handlers/contexts/global.svelte";
+  import taskbarHandler from "$handlers/taskbar.svelte";
+  import { reactivity_startmenu_state } from "$contexts/global.svelte";
   import { start_button_attributes } from "$elements/desktop/taskbar/utils/constant";
 
   let handler = taskbarHandler();

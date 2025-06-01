@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { reactivity_startmenu_state } from "$handlers/contexts/global.svelte";
-  import taskbarHandler from "$handlers/elements/taskbar.svelte";
-  import type { TaskBarState } from "$handlers/states/taskbar.svelte";
+  import { reactivity_startmenu_state } from "$contexts/global.svelte";
+  import taskbarHandler from "$handlers/taskbar.svelte";
+  import type { TaskBarState } from "$states/taskbar.svelte";
   import Clock from "$commonElements/clock.svelte";
   import Separator from "./components/separator.svelte";
   import TaskbarButtons from "./components/taskbar_buttons.svelte";
@@ -76,7 +76,7 @@
     height: 5vh;
   }
 
-  .windows-side {
+  #windows-side {
     /* Auto layout */
     display: flex;
     flex-direction: row;

@@ -14,7 +14,20 @@
     "allowJs": true,
     "checkJs": true,
     "isolatedModules": true,
-    "moduleDetection": "force"
+    "moduleDetection": "force",
+    "baseUrl": ".",
+    "paths": {
+      "$handlers/*": [
+        "src/lib/handlers/*"
+      ],
+      "$models/*": [
+        "src/lib/models/*"
+      ]
+    }
   },
-  "include": ["src/**/*.ts", "src/**/*.js", "src/**/*.svelte"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.js",
+    "src/**/*.svelte",
+  ]
 }

@@ -1,16 +1,16 @@
 <script lang="ts">
   import LinkButtons from "./components/link_buttons.svelte";
   import { slide } from "svelte/transition";
-  import { reactivity_startmenu_state } from "../../handlers/global_handlers/global_handler.svelte";
-  import type { LinkRelatedState } from "../../handlers/states/link_related_state.svelte";
-  import startMenuHandler from "../../handlers/elements_handlers/startmenu/startmenu_handler.svelte";
   import { onMount } from "svelte";
+  import startMenuHandler from "$handlers/elements/startmenu.svelte";
+  import type { ContentRelatedState } from "$handlers/states/content_related.svelte";
+  import { reactivity_startmenu_state } from "$handlers/contexts/global.svelte";
 
   let options = { duration: 50, x: "75vh" };
 
   let handler = startMenuHandler();
 
-  let state: LinkRelatedState = $state(handler.getState());
+  let state: ContentRelatedState = $state(handler.getState());
 
   onMount(() => {
     handler.getLinks();
@@ -23,6 +23,7 @@
     <div id="title-bar">
       <text>Pedro's Link</text>
     </div>
+    <!-- TODO: Add later
     <div id="content-side">
       {#each state.links_list as button}
         <LinkButtons
@@ -34,6 +35,7 @@
         />
       {/each}
     </div>
+    -->
   </div>
 {/if}
 

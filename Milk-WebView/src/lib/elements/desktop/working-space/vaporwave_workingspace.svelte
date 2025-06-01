@@ -1,12 +1,11 @@
 <script lang="ts">
-  import type { LinkRelatedState } from "../../handlers/states/link_related_state.svelte";
-  import VaporwaveWindow from "./components/vaporwave_window.svelte";
-  import desktopHandler from "../../handlers/elements_handlers/desktop/desktop_handler.svelte";
   import { onMount } from "svelte";
+  import type { ContentRelatedState } from "$states/content_related.svelte";
+  import desktopHandler from "$handlers/desktop.svelte"; //FUCK THE ALIASES, MY FUCKING LSP HAS CANCER OR SOMETHING
 
   let handler = desktopHandler();
 
-  let state: LinkRelatedState = $state(handler.getState());
+  let state: ContentRelatedState = $state(handler.getState());
 
   onMount(async () => {
     handler.getLinks();
@@ -15,6 +14,7 @@
 </script>
 
 <div class="desktop">
+  <!-- TODO: Add later
   {#each state.links_list as link_object}
     <VaporwaveWindow
       text={link_object.title}
@@ -25,4 +25,5 @@
       key={link_object.key as number}
     />
   {/each}
+  -->
 </div>

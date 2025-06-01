@@ -1,5 +1,4 @@
 <script lang="ts">
-  import "../utils/general.scss";
   //Let's also make this the stateless side
   let { time } = $props();
 
@@ -41,6 +40,25 @@
     border-width: 0px 1px 1px 0px;
     border-style: solid;
     border-color: #3a3a3a;
+
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+  }
+  text {
+    width: var(--width);
+    height: 34px;
+
+    font-family: "Jersey 10";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 34px;
+    display: flex;
+    align-items: center;
+
+    color: #ffffff;
 
     /* Inside auto layout */
     flex: none;

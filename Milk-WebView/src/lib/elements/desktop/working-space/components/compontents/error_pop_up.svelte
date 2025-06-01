@@ -1,5 +1,5 @@
 <script lang="ts">
-  import close_icon from "../../../../../assets/icon_errors/close_icon.svg";
+  import close_icon from "$static/icon_errors/close_icon.svg";
   import { scale } from "svelte/transition";
 
   let { animation_options } = $props();

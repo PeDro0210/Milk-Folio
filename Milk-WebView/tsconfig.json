@@ -8,18 +8,4 @@
       "path": "./tsconfig.node.json"
     }
   ],
-  "compilerOptions": {
-    "baseUrl": "src",
-    "paths": {
-      "$elements/*": [
-        "elements/*"
-      ],
-      "$handlers/*": [
-        "handlers/*"
-      ],
-      "$models/*": [
-        "models/"
-      ]
-    }
-  }
 }

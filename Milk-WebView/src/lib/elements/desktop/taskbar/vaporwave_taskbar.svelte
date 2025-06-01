@@ -1,12 +1,12 @@
 <script lang="ts">
+  import { reactivity_startmenu_state } from "$handlers/contexts/global.svelte";
+  import taskbarHandler from "$handlers/elements/taskbar.svelte";
+  import type { TaskBarState } from "$handlers/states/taskbar.svelte";
+  import Clock from "$commonElements/clock.svelte";
   import Separator from "./components/separator.svelte";
   import TaskbarButtons from "./components/taskbar_buttons.svelte";
   import { start_button_attributes } from "./utils/constant";
-  import TaskbarClock from "./components/taskbar_clock.svelte";
   import { onMount } from "svelte";
-  import { reactivity_startmenu_state } from "../../handlers/global_handlers/global_handler.svelte";
-  import type { TaskBarState } from "../../handlers/states/taskbar_state.svelte";
-  import taskbarHandler from "../../handlers/elements_handlers/taskbar/taskbar_handler.svelte";
 
   //let's not talk about this stupid workaround
 
@@ -47,6 +47,7 @@
 
   <Separator />
 
+  <!-- TODO: Add later
   <div class="windows-side">
     {#each state.links_list as button}
       <TaskbarButtons
@@ -59,10 +60,11 @@
       />
     {/each}
   </div>
+  -->
 
   <Separator />
 
-  <TaskbarClock time={state.time} />
+  <Clock time={state.time} />
 </div>
 
 <style lang="scss">

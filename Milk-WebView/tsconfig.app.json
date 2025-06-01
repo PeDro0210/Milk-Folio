@@ -18,10 +18,28 @@
     "baseUrl": ".",
     "paths": {
       "$handlers/*": [
-        "src/lib/handlers/*"
+        "src/lib/handlers/elements/*"
       ],
       "$models/*": [
         "src/lib/models/*"
+      ],
+      "$elements/*": [
+        "src/lib/elements/*"
+      ],
+      "$commonElements/*": [
+        "src/lib/elements/common/*"
+      ],
+      "$pages/*": [
+        "src/lib/pages/*"
+      ],
+      "$contexts/*": [
+        "src/lib/handlers/contexts/*"
+      ],
+      "$states/*": [
+        "src/lib/handlers/states/*"
+      ],
+      "$static/*": [
+        "src/assets/*"
       ]
     }
   },

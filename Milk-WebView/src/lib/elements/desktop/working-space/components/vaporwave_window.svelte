@@ -1,8 +1,8 @@
 <script lang="ts">
-  import close_button from "../../../../assets/icon_buttons/close_icon.svg";
-  import minimize_button from "../../../../assets/icon_buttons/minimize_icon.svg";
-  import windowHandler from "../../../handlers/elements_handlers/window/window_handler.svelte";
-  import type { WindowState } from "../../../handlers/states/window_state.svelte";
+  import close_button from "$static/icon_buttons/close_icon.svg";
+  import minimize_button from "$tatic/assets/icon_buttons/minimize_icon.svg";
+  import windowHandler from "$handlers/elements/window.svelte";
+  import type { VaporWaveWindowState } from "$handlers/states/window.svelte";
   import ErrorPopUp from "./compontents/error_pop_up.svelte";
   import WindowButton from "./compontents/window_button.svelte";
 
@@ -23,7 +23,7 @@
 
   let handler = windowHandler(window, key);
 
-  let state: WindowState = $state(handler.getState());
+  let state: VaporWaveWindowState = $state(handler.getState());
 </script>
 
 <svelte:window

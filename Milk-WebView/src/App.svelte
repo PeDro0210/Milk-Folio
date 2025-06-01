@@ -1,16 +1,15 @@
 <script lang="ts">
-  import VaporwaveAppbar from "./lib/elements/appbar_phone/vaporwave_appbar.svelte";
-  import VaporwaveDesktop from "./lib/elements/desktop/vaporwave_desktop.svelte";
-  import MilkLoadingScreen from "./lib/elements/loading/milk_loading_screen.svelte";
-  import VaporwaveStartmenu from "./lib/elements/startmenu/vaporwave_startmenu.svelte";
-  import VaporwaveTaskbar from "./lib/elements/taskbar/vaporwave_taskbar.svelte";
-  import VaporwaveTaskbarPhone from "./lib/elements/taskbar_phone/vaporwave_taskbar_phone.svelte";
+  import MilkLoadingScreen from "./lib/elements/common/milk_loading_screen.svelte";
+  import VaporwaveStartmenu from "./lib/elements/desktop/startmenu/vaporwave_startmenu.svelte";
+  import VaporwaveTaskbar from "./lib/elements/desktop/taskbar/vaporwave_taskbar.svelte";
+  import VaporwaveWorkingspace from "./lib/elements/desktop/working-space/vaporwave_workingspace.svelte";
+  import VaporwaveAppbar from "./lib/elements/phone/appbar/vaporwave_appbar.svelte";
   import {
     loading_state,
     reactivity_startmenu_state,
     window_state,
-  } from "./lib/handlers/global_handlers/global_handler.svelte";
-  import { AligmentTypes } from "./lib/handlers/global_handlers/utils.svelte";
+  } from "./lib/handlers/contexts/global.svelte";
+  import { AligmentTypes } from "./lib/handlers/contexts/utils.svelte";
 
   $effect(() => {
     window_state.changeInnerWidth();
@@ -39,7 +38,7 @@
   {/if}
 
   <main>
-    <VaporwaveDesktop />
+    <VaporwaveWorkingspace />
   </main>
 
   <hud>
@@ -50,7 +49,7 @@
     {:else}
       <VaporwaveAppbar />
       <VaporwaveStartmenu />
-      <VaporwaveTaskbarPhone />
+      <VaporwaveTaskbar />
     {/if}
   </hud>
 </crt-filter>

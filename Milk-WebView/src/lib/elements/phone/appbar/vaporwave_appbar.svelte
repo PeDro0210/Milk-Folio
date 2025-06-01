@@ -1,7 +1,7 @@
 <script lang="ts">
-  import taskbarHandler from "../../handlers/elements_handlers/taskbar/taskbar_handler.svelte";
-  import type { TaskBarState } from "../../handlers/states/taskbar_state.svelte";
-  import TaskbarClock from "../taskbar/components/taskbar_clock.svelte";
+  import taskbarHandler from "$handlers/elements/taskbar.svelte";
+  import type { TaskBarState } from "$handlers/states/taskbar.svelte";
+  import Clock from "$commonElements/clock.svelte";
 
   let handler = taskbarHandler();
 
@@ -14,7 +14,7 @@
 </script>
 
 <div id="taskbar">
-  <TaskbarClock time={state.time} />
+  <Clock time={state.time} />
 </div>
 
 <style lang="scss">

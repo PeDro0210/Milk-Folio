@@ -20,13 +20,13 @@
   };
 
   onMount(() => {
-    handler.getLinks();
     handler.setLoaded;
     window_resizing();
   });
 
-  //Managing the date for the clock
+  //Managing the date for the clock and the link fetching with the general state
   $effect(() => {
+    handler.getLinks();
     handler.getTime();
   });
 
@@ -49,19 +49,16 @@
   <Separator />
 
   <div id="windows-side">
-    <!-- TODO: Add later
-
     {#each state.links_list as button}
       <TaskbarButtons
-        icon_url={button.taskbarIconUrl as string}
+        icon_url={button.image as string}
         width={null}
         text={button.title}
         on_click_function={() => {
-          window.open(button.link, "_blank");
+          window.open(button.link, "_self");
         }}
       />
     {/each}
-  -->
   </div>
 
   <Separator />

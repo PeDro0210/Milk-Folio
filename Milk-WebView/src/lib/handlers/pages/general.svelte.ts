@@ -1,8 +1,6 @@
 import type { Content } from "$models/content.svelte";
 import type { Link } from "$models/links.svelte";
 import ContentType from "$models/utils.svelte";
-import type { PageContextState } from "$states/declarations.svelte";
-import { getContext } from "svelte";
 import { page_context } from "../contexts/page.svelte";
 
 function pageMeHandler() {
@@ -53,7 +51,9 @@ function pageMeHandler() {
 
   return {
     getLinks: () => {
+      console.log(page_context.links);
       page_context.links = link_getter();
+      console.log(page_context.links);
     },
     getContent: () => {
       page_context.content = content_getter();

@@ -13,8 +13,11 @@
   let state: StartMenuState = $state(handler.getState());
 
   onMount(() => {
-    handler.getLinks();
     handler.setLoaded;
+  });
+
+  $effect(() => {
+    handler.getLinks();
   });
 </script>
 
@@ -30,7 +33,7 @@
           icon_url={button.image as string}
           text={button.title}
           on_click_function={() => {
-            window.open(button.link, "_blank");
+            window.open(button.link, "_self");
           }}
         />
       {/each}

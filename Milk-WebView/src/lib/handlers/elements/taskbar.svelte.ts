@@ -6,6 +6,7 @@ import {
 import { api, loading_state } from "$states/global.svelte";
 import { getContext } from "svelte";
 import { page_context } from "../contexts/page.svelte";
+import type { Link } from "$models/links.svelte";
 
 /*
  *  First rule before anything, simplicty before doing weird sheningangs,
@@ -23,9 +24,6 @@ function taskbarHandler() {
   };
 
   //TODO: implement context grabbing
-  let links_fetcher = async () => {
-    return page_context.links;
-  };
 
   //Changes the innerwidth of the taskbar and changes css variable of the window-width
   //Ik i'm using scss, but GRAWWWWWWWWW, PREPROCESSORS
@@ -52,13 +50,8 @@ function taskbarHandler() {
 
   return {
     getState: state_getter,
-    getLinks: async () => {
-      state.links_list = await links_fetcher();
-      //links_fetcher()
-      // .then((result: any) => {
-      //TODO: Add later
-      //state.content_list = result.data.data.getContents as Content[];
-      //});
+    getLinks: () => {
+      state.links_list = page_context.links;
     },
     onChangeWidth: (window_width: number) => {
       state.inner_width = innerwidth_changer(window_width);

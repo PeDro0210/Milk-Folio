@@ -23,6 +23,8 @@
 
     // ! DEBBUG
     handler.getContent();
+
+    console.log("Getting content");
   });
 
   $effect(() => {

@@ -37,6 +37,7 @@
     height: 100%;
     z-index: 20;
 
+    overflow: hidden;
     left: 0;
     right: 0;
     top: 0;

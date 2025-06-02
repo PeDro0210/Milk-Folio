@@ -1,3 +1,4 @@
+import type { Link } from "$models/links.svelte";
 import {
   LoadableElements,
   type PageContextState,
@@ -13,9 +14,6 @@ function startMenuHandler() {
   });
 
   //TODO: implement context grabbing
-  let link_fetcher = async () => {
-    return page_context.links;
-  };
 
   let loaderSetter = () => {
     loading_state.setLoaded(LoadableElements.startmenu);
@@ -26,12 +24,7 @@ function startMenuHandler() {
       return state;
     },
     getLinks: async () => {
-      state.links_list = await link_fetcher();
-      //link_fetcher()
-      // .then((result: any) => {
-      //TODO: Add later
-      //state.content_list = result.data.data.getContents as Content[];
-      // });
+      state.links_list = page_context.links;
     },
     setLoaded: loaderSetter(),
   };

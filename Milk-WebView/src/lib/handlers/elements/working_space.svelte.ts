@@ -1,10 +1,11 @@
-import type { Content } from "$models/content.svelte";
-import { api, loading_state } from "$contexts/global.svelte";
-import { LoadableElements } from "$contexts/utils.svelte";
-import type { ContentRelatedState } from "$states/content_related.svelte";
+import {
+  LoadableElements,
+  type WorkingSpaceState,
+} from "$states/declarations.svelte";
+import { api, loading_state } from "$states/global.svelte";
 
-function desktopHandler() {
-  let state: ContentRelatedState = $state({
+function workingSpaceHandler() {
+  let state: WorkingSpaceState = $state({
     content_list: [],
   });
 
@@ -45,4 +46,4 @@ function desktopHandler() {
   };
 }
 
-export default desktopHandler;
+export default workingSpaceHandler;

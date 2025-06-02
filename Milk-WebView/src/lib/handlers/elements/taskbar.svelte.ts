@@ -1,6 +1,8 @@
-import { api, loading_state } from "$contexts/global.svelte";
-import { LoadableElements } from "$contexts/utils.svelte";
-import type { TaskBarState } from "$states/taskbar.svelte";
+import {
+  LoadableElements,
+  type TaskBarState,
+} from "$states/declarations.svelte";
+import { api, loading_state } from "$states/global.svelte";
 
 /*
  *  First rule before anything, simplicty before doing weird sheningangs,

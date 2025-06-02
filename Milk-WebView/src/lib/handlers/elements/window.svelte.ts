@@ -1,4 +1,4 @@
-import type { VaporWaveWindowState } from "$states/window.svelte";
+import type { VaporWaveWindowState } from "$states/declarations.svelte";
 
 /*
  *  First rule before anything, simplicty before doing weird sheningangs,

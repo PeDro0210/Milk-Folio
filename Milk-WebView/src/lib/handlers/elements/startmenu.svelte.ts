@@ -1,10 +1,13 @@
-import { api, loading_state } from "$contexts/global.svelte";
-import { LoadableElements } from "$contexts/utils.svelte";
-import type { ContentRelatedState } from "$states/content_related.svelte";
+import {
+  LoadableElements,
+  type StartMenuState,
+} from "$states/declarations.svelte";
+import { api, loading_state } from "$states/global.svelte";
 
 function startMenuHandler() {
-  let state: ContentRelatedState = $state({
+  let state: StartMenuState = $state({
     content_list: [],
+    start_menu_title: "",
   });
 
   let link_fetcher = async () => {

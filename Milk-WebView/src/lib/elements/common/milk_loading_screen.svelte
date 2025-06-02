@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { fade } from "svelte/transition";
-  import type { LoadingState } from "$states/loading.svelte";
   import loadingHandler from "$handlers/loading.svelte";
-  import { loading_state } from "$contexts/global.svelte";
+  import type { LoadingState } from "$states/declarations.svelte";
+  import { loading_state } from "$states/global.svelte";
+  import { fade } from "svelte/transition";
   let options = { duration: 3000 };
 
   let handler = loadingHandler();

@@ -1,11 +1,11 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import type { ContentRelatedState } from "$states/content_related.svelte";
-  import desktopHandler from "$handlers/desktop.svelte"; //FUCK THE ALIASES, MY FUCKING LSP HAS CANCER OR SOMETHING
+  import type { WorkingSpaceState } from "$states/declarations.svelte";
+  import workingSpaceHandler from "$handlers/working_space.svelte";
 
-  let handler = desktopHandler();
+  let handler = workingSpaceHandler();
 
-  let state: ContentRelatedState = $state(handler.getState());
+  let state: WorkingSpaceState = $state(handler.getState());
 
   onMount(async () => {
     handler.getLinks();

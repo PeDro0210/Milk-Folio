@@ -1,7 +1,7 @@
 <script lang="ts">
   import taskbarHandler from "$handlers/taskbar.svelte";
-  import type { TaskBarState } from "$states/taskbar.svelte";
   import Clock from "$commonElements/clock.svelte";
+  import type { TaskBarState } from "$states/declarations.svelte";
 
   let handler = taskbarHandler();
 

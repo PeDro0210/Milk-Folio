@@ -1,4 +1,4 @@
-import type { LoadingState } from "$states/loading.svelte";
+import type { LoadingState } from "$states/declarations.svelte";
 
 function loadingHandler() {
   let state: LoadingState = $state({

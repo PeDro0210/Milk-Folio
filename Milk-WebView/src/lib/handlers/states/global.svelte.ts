@@ -1,5 +1,5 @@
+import type { LoadableElements } from "$states/declarations.svelte";
 import axios from "axios";
-import type { LoadableElements } from "./utils.svelte";
 
 export const reactivity_startmenu_state = $state({
   //for managing the start menu reactivity

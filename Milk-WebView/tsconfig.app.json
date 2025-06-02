@@ -32,15 +32,15 @@
       "$pages/*": [
         "src/lib/pages/*"
       ],
-      "$contexts/*": [
-        "src/lib/handlers/contexts/*"
-      ],
       "$states/*": [
+        "src/lib/handlers/states/*"
+      ],
+      "$globalStates/*": [
         "src/lib/handlers/states/*"
       ],
       "$static/*": [
         "src/assets/*"
-      ]
+      ],
     }
   },
   "include": [

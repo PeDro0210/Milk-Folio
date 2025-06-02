@@ -3,14 +3,14 @@
   import { slide } from "svelte/transition";
   import { onMount } from "svelte";
   import startMenuHandler from "$handlers/startmenu.svelte";
-  import type { ContentRelatedState } from "$states/content_related.svelte";
-  import { reactivity_startmenu_state } from "$contexts/global.svelte";
+  import type { StartMenuState } from "$states/declarations.svelte";
+  import { reactivity_startmenu_state } from "$states/global.svelte";
 
   let options = { duration: 50, x: "75vh" };
 
   let handler = startMenuHandler();
 
-  let state: ContentRelatedState = $state(handler.getState());
+  let state: StartMenuState = $state(handler.getState());
 
   onMount(() => {
     handler.getLinks();
@@ -21,6 +21,7 @@
 {#if !reactivity_startmenu_state.slide_start_menu}
   <div id="start-menu" transition:slide={options}>
     <div id="title-bar">
+      <!--TODO: Make the title-bar part be managable in the state-->
       <text>Pedro's Link</text>
     </div>
     <!-- TODO: Add later

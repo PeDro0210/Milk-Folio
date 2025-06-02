@@ -9,9 +9,8 @@
     loading_state,
     reactivity_startmenu_state,
     window_state,
-  } from "./lib/handlers/contexts/global.svelte";
-  import { AligmentTypes } from "./lib/handlers/contexts/utils.svelte";
-
+  } from "$states/global.svelte";
+  import { AligmentTypes } from "$states/declarations.svelte";
   $effect(() => {
     window_state.changeInnerWidth();
 
@@ -38,14 +37,13 @@
     <MilkLoadingScreen />
   {/if}
 
-  <main>
-    <VaporwaveWorkingspace />
-  </main>
-
   <hud>
     {#if window_state.window_width > 700}
       <!--- need to re "instanciate" cause the AppBar--->
       <VaporwaveStartmenu />
+      <main>
+        <VaporwaveWorkingspace />
+      </main>
       <VaporwaveTaskbar />
     {:else}
       <VaporwaveAppbar />

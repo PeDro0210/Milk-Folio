@@ -1,12 +1,12 @@
 <script lang="ts">
-  import { reactivity_startmenu_state } from "$contexts/global.svelte";
-  import taskbarHandler from "$handlers/taskbar.svelte";
-  import type { TaskBarState } from "$states/taskbar.svelte";
   import Clock from "$commonElements/clock.svelte";
   import Separator from "./components/separator.svelte";
   import TaskbarButtons from "./components/taskbar_buttons.svelte";
   import { start_button_attributes } from "./utils/constant";
   import { onMount } from "svelte";
+  import type { TaskBarState } from "$states/declarations.svelte";
+  import { reactivity_startmenu_state } from "$states/global.svelte";
+  import taskbarHandler from "$handlers/taskbar.svelte";
 
   //let's not talk about this stupid workaround
 

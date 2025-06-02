@@ -2,9 +2,9 @@
   import close_button from "$static/icon_buttons/close_icon.svg";
   import minimize_button from "$tatic/assets/icon_buttons/minimize_icon.svg";
   import windowHandler from "$handlers/window.svelte";
-  import type { VaporWaveWindowState } from "$states/window.svelte";
   import ErrorPopUp from "./compontents/error_pop_up.svelte";
   import WindowButton from "./compontents/window_button.svelte";
+  import type { VaporWaveWindowState } from "$states/declarations.svelte";
 
   let {
     text,

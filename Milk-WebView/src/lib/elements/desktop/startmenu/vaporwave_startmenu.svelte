@@ -17,6 +17,7 @@
   });
 
   $effect(() => {
+    handler.setNewStartMenuName();
     handler.getLinks();
   });
 </script>
@@ -25,7 +26,7 @@
   <div id="start-menu" transition:slide={options}>
     <div id="title-bar">
       <!--TODO: Make the title-bar part be managable in the state-->
-      <text>Pedro's Link</text>
+      <text>{state.start_menu_title}</text>
     </div>
     <div id="content-side">
       {#each state.links_list as button}

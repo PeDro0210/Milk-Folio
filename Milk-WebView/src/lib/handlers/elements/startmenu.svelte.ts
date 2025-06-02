@@ -1,16 +1,16 @@
-import type { Link } from "$models/links.svelte";
+import { page_context } from "$contexts/page.svelte";
 import {
   LoadableElements,
   type PageContextState,
+  Pages,
   type StartMenuState,
 } from "$states/declarations.svelte";
 import { api, loading_state } from "$states/global.svelte";
-import { page_context } from "../contexts/page.svelte";
 
 function startMenuHandler() {
   let state: StartMenuState = $state({
     links_list: [],
-    start_menu_title: "",
+    start_menu_title: Pages.home.valueOf(),
   });
 
   //TODO: implement context grabbing
@@ -27,6 +27,9 @@ function startMenuHandler() {
       state.links_list = page_context.links;
     },
     setLoaded: loaderSetter(),
+    setNewStartMenuName: () => {
+      state.start_menu_title = page_context.start_menu_title;
+    },
   };
 }
 

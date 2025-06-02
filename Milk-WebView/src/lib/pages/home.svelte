@@ -1,4 +1,8 @@
 <script lang="ts">
-  import { onMount } from "svelte";
-  import pageMeHandler from "../handlers/pages/general.svelte";
+  import { page_context } from "$contexts/page.svelte";
+  import { Pages } from "$states/declarations.svelte";
+
+  $effect(() => {
+    page_context.start_menu_title = Pages.home;
+  });
 </script>

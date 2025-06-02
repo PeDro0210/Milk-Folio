@@ -1,6 +1,7 @@
 import type { Content } from "$models/content.svelte";
 import type { Link } from "$models/links.svelte";
 import ContentType from "$models/utils.svelte";
+import type { Pages } from "$states/declarations.svelte";
 import { page_context } from "../contexts/page.svelte";
 
 function pageMeHandler() {
@@ -58,7 +59,7 @@ function pageMeHandler() {
     getContent: () => {
       page_context.content = content_getter();
     },
-    setStartMenuTitle: (title: string) => {
+    setStartMenuTitle: (title: Pages) => {
       page_context.start_menu_title = title;
     },
   };

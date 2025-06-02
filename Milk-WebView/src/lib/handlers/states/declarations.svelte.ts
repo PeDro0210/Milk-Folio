@@ -30,7 +30,7 @@ export interface VaporWaveWindowState {
 export interface PageContextState {
   links: Link[];
   content: Content[];
-  start_menu_title: string;
+  start_menu_title: Pages;
 }
 
 export enum AligmentTypes {
@@ -45,7 +45,7 @@ export enum LoadableElements {
 }
 
 export enum Pages {
-  home = "home",
-  about = "about",
-  projects = "projects",
+  home = "Home",
+  about = "About",
+  projects = "Projects",
 }

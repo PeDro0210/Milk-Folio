@@ -27,6 +27,12 @@ export interface VaporWaveWindowState {
   show_error_pop_up: boolean;
 }
 
+export interface PageContextState {
+  links: Links[];
+  content: Content[];
+  start_menu_title: string;
+}
+
 export enum AligmentTypes {
   start = "flex-start",
   center = "center",

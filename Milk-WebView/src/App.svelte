@@ -44,7 +44,11 @@
       <!--- need to re "instanciate" cause the AppBar--->
       <VaporwaveStartmenu />
       <main>
+        <!--For the content loading-->
         <Router />
+        <!--For the content loading-->
+
+        <VaporwaveWorkingspace />
       </main>
       <VaporwaveTaskbar />
     {:else}

@@ -1,3 +1,3 @@
 # TODO
 
-[]: manage different contexts for the WorkingSpace
+[]: Call the setups for each page

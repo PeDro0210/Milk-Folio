@@ -19,23 +19,8 @@ function taskbarHandler() {
     return state;
   };
 
-  //TODO: implement the API fetching
+  //TODO: implement context grabbing
   let links_fetcher = async () => {
-    return api({
-      url: "/graphql",
-      method: "post",
-      data: {
-        query: `
-        query{
-          getLinks{
-            key
-            title
-            link
-            taskbarIconUrl
-          }
-        }`,
-      },
-    });
   };
 
   //Changes the innerwidth of the taskbar and changes css variable of the window-width

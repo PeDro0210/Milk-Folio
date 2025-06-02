@@ -10,22 +10,8 @@ function startMenuHandler() {
     start_menu_title: "",
   });
 
+  //TODO: implement context grabbing
   let link_fetcher = async () => {
-    return api({
-      url: "/graphql",
-      method: "post",
-      data: {
-        query: `
-        query{
-          getLinks{
-            key
-            title
-            link
-            startmenuIconUrl
-          }
-        }`,
-      },
-    });
   };
 
   let loaderSetter = () => {

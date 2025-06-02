@@ -1,11 +1,12 @@
 <script lang="ts">
   import close_button from "$static/icon_buttons/close_icon.svg";
-  import minimize_button from "$tatic/assets/icon_buttons/minimize_icon.svg";
+  import minimize_button from "$static/icon_buttons/minimize_icon.svg";
   import windowHandler from "$handlers/window.svelte";
   import type { VaporWaveWindowState } from "$states/declarations.svelte";
   import WindowButton from "$elements/common/window_button.svelte";
   import ErrorPopUp from "$elements/common/error_pop_up.svelte";
   import type ContentType from "$models/utils.svelte";
+  import { onMount } from "svelte";
 
   let {
     text,
@@ -27,6 +28,10 @@
   let handler = windowHandler(window, key);
 
   let state: VaporWaveWindowState = $state(handler.getState());
+
+  onMount(() => {
+    handler.OnChangeWindowProportion(content_type);
+  });
 </script>
 
 <svelte:window
@@ -38,7 +43,7 @@
 
 <div
   class="window"
-  style="transform: translate({state.x_position}px,{state.y_position}px);"
+  style="transform: translate({state.x_position}px,{state.y_position}px); width: {state.width}; height: {state.height};"
   onmouseup={handler.onMoveToFront}
 >
   <!-- the button is or making the compiler happy-->
@@ -89,8 +94,8 @@
     position: fixed;
 
     /*TODO: make this variable*/
-    width: 260px;
-    height: 262px;
+    /*width: 260px;*/
+    /*height: 262px;*/
 
     z-index: 0;
 

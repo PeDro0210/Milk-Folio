@@ -1,3 +1,4 @@
+import ContentType from "$models/utils.svelte";
 import type { VaporWaveWindowState } from "$states/declarations.svelte";
 
 /*
@@ -10,6 +11,8 @@ function windowHandler(window: Window & typeof globalThis, key: number) {
       (-750 + 150 * (key + 1)).toString(),
     y_position: window.localStorage.getItem("positionY" + key) ??
       (-600 + 100 * (key + 2)).toString(),
+    width: "",
+    height: "",
     appbar_grabbed: false,
     show_error_pop_up: false,
   });
@@ -45,6 +48,15 @@ function windowHandler(window: Window & typeof globalThis, key: number) {
     e.currentTarget.style.zIndex = "1";
   };
 
+  let dynamic_window_size = (window_type: ContentType): string[] => {
+    switch (window_type) {
+      case ContentType.Image:
+        return ["264px", "264px"];
+      case ContentType.Markdown:
+        return ["480px", "640px"];
+    }
+  };
+
   return {
     getState: () => {
       return state;
@@ -63,6 +75,12 @@ function windowHandler(window: Window & typeof globalThis, key: number) {
       setTimeout(() => {
         state.show_error_pop_up = false;
       }, 3000);
+    },
+    OnChangeWindowProportion: (window_type: ContentType) => {
+      let [width, height] = dynamic_window_size(window_type);
+
+      state.width = width;
+      state.height = height;
     },
   };
 }

@@ -2,6 +2,7 @@
   import { onMount } from "svelte";
   import type { WorkingSpaceState } from "$states/declarations.svelte";
   import workingSpaceHandler from "$handlers/working_space.svelte";
+  import VaporwaveWindow from "./components/vaporwave_window.svelte";
 
   let handler = workingSpaceHandler();
 
@@ -14,16 +15,16 @@
 </script>
 
 <div class="desktop">
-  <!-- TODO: Add later
-  {#each state.links_list as link_object}
+  {#each state.content_list as content_object}
     <VaporwaveWindow
-      text={link_object.title}
-      img_content={link_object.windowPhotoUrl}
+      text={content_object.title}
+      content={content_object.content}
       on_click_function={() => {
-        window.open(link_object.link, "_blank");
+        //TODO: add the link option for images only
+        //window.open(content_object.link, "_blank");
       }}
-      key={link_object.key as number}
+      content_type={content_object.content_type}
+      key={content_object.key as number}
     />
   {/each}
-  -->
 </div>

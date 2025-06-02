@@ -1,5 +1,6 @@
 import type { LoadableElements } from "$states/declarations.svelte";
 import axios from "axios";
+import { createRouter } from "sv-router";
 
 export const reactivity_startmenu_state = $state({
   //for managing the start menu reactivity
@@ -42,3 +43,9 @@ export const window_state = $state({
 export const api = axios.create({
   baseURL: import.meta.env.VITE_BACKEND_URL,
 });
+
+//export const { p, navigate, isActive, route } = createRouter({
+//  "/": ,
+//  "/about": ,
+//  "/projects":,
+//});

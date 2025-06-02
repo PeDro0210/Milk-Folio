@@ -48,6 +48,8 @@ function taskbarHandler() {
     if (window_side != null) {
       window_side.style.setProperty("--window-width", new_inner_width);
     }
+
+    console.log(window_side);
     return new_inner_width;
   };
 

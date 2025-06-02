@@ -34,6 +34,7 @@
   //Managing the resizing of the window-sidebar
   $effect(() => {
     window.addEventListener("resize", window_resizing);
+    console.log();
   });
 </script>
 
@@ -47,8 +48,9 @@
 
   <Separator />
 
-  <!-- TODO: Add later
-  <div class="windows-side">
+  <div id="windows-side">
+    <!-- TODO: Add later
+
     {#each state.links_list as button}
       <TaskbarButtons
         icon_url={button.taskbarIconUrl as string}
@@ -59,8 +61,8 @@
         }}
       />
     {/each}
-  </div>
   -->
+  </div>
 
   <Separator />
 

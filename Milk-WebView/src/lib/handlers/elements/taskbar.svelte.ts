@@ -5,6 +5,7 @@ import {
 } from "$states/declarations.svelte";
 import { api, loading_state } from "$states/global.svelte";
 import { getContext } from "svelte";
+import { page_context } from "../contexts/page.svelte";
 
 /*
  *  First rule before anything, simplicty before doing weird sheningangs,
@@ -12,7 +13,7 @@ import { getContext } from "svelte";
  */
 function taskbarHandler() {
   let state: TaskBarState = $state({
-    content_list: [],
+    links_list: [],
     inner_width: "",
     time: new Date(),
   });
@@ -23,8 +24,7 @@ function taskbarHandler() {
 
   //TODO: implement context grabbing
   let links_fetcher = async () => {
-    const state_context: PageContextState = getContext("page");
-    return state_context.links;
+    return page_context.links;
   };
 
   //Changes the innerwidth of the taskbar and changes css variable of the window-width
@@ -38,7 +38,6 @@ function taskbarHandler() {
       window_side.style.setProperty("--window-width", new_inner_width);
     }
 
-    console.log(window_side);
     return new_inner_width;
   };
 
@@ -54,11 +53,12 @@ function taskbarHandler() {
   return {
     getState: state_getter,
     getLinks: async () => {
-      links_fetcher()
-        .then((result: any) => {
-          //TODO: Add later
-          //state.content_list = result.data.data.getContents as Content[];
-        });
+      state.links_list = await links_fetcher();
+      //links_fetcher()
+      // .then((result: any) => {
+      //TODO: Add later
+      //state.content_list = result.data.data.getContents as Content[];
+      //});
     },
     onChangeWidth: (window_width: number) => {
       state.inner_width = innerwidth_changer(window_width);

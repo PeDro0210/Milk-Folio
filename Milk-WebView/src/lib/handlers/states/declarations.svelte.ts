@@ -1,5 +1,5 @@
 import type { Content } from "$models/content.svelte";
-import type { Links } from "$models/links.svelte";
+import type { Link } from "$models/links.svelte";
 
 export interface WorkingSpaceState {
   content_list: Content[];
@@ -10,12 +10,12 @@ export interface LoadingState {
 }
 
 export interface StartMenuState {
-  content_list: Links[];
+  links_list: Link[];
   start_menu_title: string;
 }
 
 export interface TaskBarState {
-  content_list: Links[];
+  links_list: Link[];
   inner_width: string;
   time: Date;
 }
@@ -28,7 +28,7 @@ export interface VaporWaveWindowState {
 }
 
 export interface PageContextState {
-  links: Links[];
+  links: Link[];
   content: Content[];
   start_menu_title: string;
 }

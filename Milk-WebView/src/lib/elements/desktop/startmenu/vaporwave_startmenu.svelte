@@ -24,11 +24,10 @@
       <!--TODO: Make the title-bar part be managable in the state-->
       <text>Pedro's Link</text>
     </div>
-    <!-- TODO: Add later
     <div id="content-side">
       {#each state.links_list as button}
         <LinkButtons
-          icon_url={button.startmenuIconUrl as string}
+          icon_url={button.image as string}
           text={button.title}
           on_click_function={() => {
             window.open(button.link, "_blank");
@@ -36,7 +35,6 @@
         />
       {/each}
     </div>
-    -->
   </div>
 {/if}
 

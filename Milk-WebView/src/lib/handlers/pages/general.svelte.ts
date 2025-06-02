@@ -1,26 +1,31 @@
 import type { Content } from "$models/content.svelte";
-import type { Links } from "$models/links.svelte";
+import type { Link } from "$models/links.svelte";
 import ContentType from "$models/utils.svelte";
 import type { PageContextState } from "$states/declarations.svelte";
 import { getContext } from "svelte";
+import { page_context } from "../contexts/page.svelte";
 
 function pageMeHandler() {
-  const state: PageContextState = getContext("page");
-
   //TODO:Implement API Call
 
   // ! DUMMY DATA
-  const link_getter = (): Links[] => {
+  const link_getter = (): Link[] => {
     return [
       {
+        image:
+          "https://firebasestorage.googleapis.com/v0/b/fatipage-a0067.firebasestorage.app/o/milk-link%2Ftwitter%2FGG_discord_3.gif?alt=media&token=98657a10-f99f-4834-93d9-2ddc7c20d12b",
         title: "Home",
         link: "/",
       },
       {
+        image:
+          "https://firebasestorage.googleapis.com/v0/b/fatipage-a0067.firebasestorage.app/o/milk-link%2Ftwitter%2FGG_discord_3.gif?alt=media&token=98657a10-f99f-4834-93d9-2ddc7c20d12b",
         title: "About Me",
         link: "/about",
       },
       {
+        image:
+          "https://firebasestorage.googleapis.com/v0/b/fatipage-a0067.firebasestorage.app/o/milk-link%2Ftwitter%2FGG_discord_3.gif?alt=media&token=98657a10-f99f-4834-93d9-2ddc7c20d12b",
         title: "My Projects",
         link: "/projects",
       },
@@ -48,13 +53,13 @@ function pageMeHandler() {
 
   return {
     getLinks: () => {
-      state.links = link_getter();
+      page_context.links = link_getter();
     },
     getContent: () => {
-      state.content = content_getter();
+      page_context.content = content_getter();
     },
     setStartMenuTitle: (title: string) => {
-      state.start_menu_title = title;
+      page_context.start_menu_title = title;
     },
   };
 }

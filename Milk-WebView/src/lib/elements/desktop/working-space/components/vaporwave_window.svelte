@@ -2,20 +2,23 @@
   import close_button from "$static/icon_buttons/close_icon.svg";
   import minimize_button from "$tatic/assets/icon_buttons/minimize_icon.svg";
   import windowHandler from "$handlers/window.svelte";
-  import ErrorPopUp from "./compontents/error_pop_up.svelte";
-  import WindowButton from "./compontents/window_button.svelte";
   import type { VaporWaveWindowState } from "$states/declarations.svelte";
+  import WindowButton from "$elements/common/window_button.svelte";
+  import ErrorPopUp from "$elements/common/error_pop_up.svelte";
+  import type ContentType from "$models/utils.svelte";
 
   let {
     text,
-    img_content,
+    content,
     on_click_function,
     key,
+    content_type,
   }: {
     text: string;
-    img_content: string | null;
+    content: string | null;
     on_click_function: () => void;
     key: number;
+    content_type: ContentType;
   } = $props();
 
   //Configurations for the animiation of the ErrorPopUp
@@ -63,7 +66,7 @@
   </div>
   <img
     class="content"
-    src={img_content}
+    src={content}
     onclick={on_click_function}
     alt="img for the content side"
   />
@@ -85,6 +88,7 @@
 
     position: fixed;
 
+    /*TODO: make this variable*/
     width: 260px;
     height: 262px;
 

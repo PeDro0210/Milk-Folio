@@ -1,4 +1,7 @@
 import type { LoadableElements } from "$states/declarations.svelte";
+import Home from "$pages/home.svelte";
+import AboutMe from "$pages/about_me.svelte";
+import Projects from "$pages/projects.svelte";
 import axios from "axios";
 import { createRouter } from "sv-router";
 
@@ -44,8 +47,8 @@ export const api = axios.create({
   baseURL: import.meta.env.VITE_BACKEND_URL,
 });
 
-//export const { p, navigate, isActive, route } = createRouter({
-//  "/": ,
-//  "/about": ,
-//  "/projects":,
-//});
+export const { p, navigate, isActive, route } = createRouter({
+  "/": Home,
+  "/about": AboutMe,
+  "/projects": Projects,
+});

@@ -11,6 +11,8 @@
     window_state,
   } from "$states/global.svelte";
   import { AligmentTypes } from "$states/declarations.svelte";
+  import { Router } from "sv-router";
+  import "$states/global.svelte";
   $effect(() => {
     window_state.changeInnerWidth();
 
@@ -42,7 +44,7 @@
       <!--- need to re "instanciate" cause the AppBar--->
       <VaporwaveStartmenu />
       <main>
-        <VaporwaveWorkingspace />
+        <Router />
       </main>
       <VaporwaveTaskbar />
     {:else}

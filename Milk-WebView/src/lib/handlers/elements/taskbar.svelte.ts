@@ -1,8 +1,10 @@
 import {
   LoadableElements,
+  type PageContextState,
   type TaskBarState,
 } from "$states/declarations.svelte";
 import { api, loading_state } from "$states/global.svelte";
+import { getContext } from "svelte";
 
 /*
  *  First rule before anything, simplicty before doing weird sheningangs,
@@ -21,6 +23,8 @@ function taskbarHandler() {
 
   //TODO: implement context grabbing
   let links_fetcher = async () => {
+    const state_context: PageContextState = getContext("page");
+    return state_context.links;
   };
 
   //Changes the innerwidth of the taskbar and changes css variable of the window-width

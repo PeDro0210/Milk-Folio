@@ -1,30 +1,21 @@
 import {
   LoadableElements,
+  type PageContextState,
   type WorkingSpaceState,
 } from "$states/declarations.svelte";
 import { api, loading_state } from "$states/global.svelte";
+import { getContext } from "svelte";
 
 function workingSpaceHandler() {
   let state: WorkingSpaceState = $state({
     content_list: [],
   });
 
+  //TODO: implement context grabbing
   let fetcher = async () => {
-    return api({
-      url: "/graphql",
-      method: "post",
-      data: {
-        query: `
-        query{
-          getLinks{
-            key
-            title
-            link
-            windowPhotoUrl
-          }
-        }`,
-      },
-    });
+    let context_state: PageContextState = getContext("page");
+
+    return context_state.content;
   };
 
   let loaderSetter = () => {

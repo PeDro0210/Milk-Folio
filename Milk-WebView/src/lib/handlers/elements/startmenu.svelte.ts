@@ -1,8 +1,10 @@
 import {
   LoadableElements,
+  type PageContextState,
   type StartMenuState,
 } from "$states/declarations.svelte";
 import { api, loading_state } from "$states/global.svelte";
+import { getContext } from "svelte";
 
 function startMenuHandler() {
   let state: StartMenuState = $state({
@@ -12,6 +14,8 @@ function startMenuHandler() {
 
   //TODO: implement context grabbing
   let link_fetcher = async () => {
+    const state_context: PageContextState = getContext("page");
+    return state_context.links;
   };
 
   let loaderSetter = () => {

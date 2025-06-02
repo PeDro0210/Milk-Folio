@@ -43,3 +43,9 @@ export enum LoadableElements {
   taskbar = 1,
   startmenu = 2,
 }
+
+export enum Pages {
+  home = "home",
+  about = "about",
+  projects = "projects",
+}

@@ -13,6 +13,18 @@
   import { AligmentTypes } from "$states/declarations.svelte";
   import { Router } from "sv-router";
   import "$states/global.svelte";
+  import { onMount } from "svelte";
+  import pageMeHandler from "./lib/handlers/pages/general.svelte";
+
+  onMount(() => {
+    let handler = pageMeHandler();
+    // Setting general links
+    handler.getLinks();
+
+    // ! DEBBUG
+    handler.getContent();
+  });
+
   $effect(() => {
     window_state.changeInnerWidth();
 

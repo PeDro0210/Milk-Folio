@@ -13,7 +13,7 @@ function workingSpaceHandler() {
   });
 
   //TODO: implement context grabbing
-  let fetcher = async () => {
+  let fetcher = () => {
     return page_context.content;
   };
 
@@ -25,12 +25,8 @@ function workingSpaceHandler() {
     getState: () => {
       return state;
     },
-    getLinks: async () => {
-      fetcher()
-        .then((result: any) => {
-          //TODO: Add later
-          //state.content_list = result.data.data.getContents as Content[];
-        });
+    getContents: async () => {
+      state.content_list = fetcher();
     },
     setLoaded: loaderSetter(),
   };

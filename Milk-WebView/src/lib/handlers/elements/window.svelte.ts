@@ -8,9 +8,9 @@ import type { VaporWaveWindowState } from "$states/declarations.svelte";
 function windowHandler(window: Window & typeof globalThis, key: number) {
   let state: VaporWaveWindowState = $state({
     x_position: window.localStorage.getItem("positionX" + key) ??
-      (-750 + 150 * (key + 1)).toString(),
+      (150 * key).toString(),
     y_position: window.localStorage.getItem("positionY" + key) ??
-      (-600 + 100 * (key + 2)).toString(),
+      (-100 * key).toString(),
     width: "",
     height: "",
     appbar_grabbed: false,

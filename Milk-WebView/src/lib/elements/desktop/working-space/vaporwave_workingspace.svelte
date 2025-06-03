@@ -9,8 +9,11 @@
   let state: WorkingSpaceState = $state(handler.getState());
 
   onMount(async () => {
-    handler.getLinks();
     handler.setLoaded;
+  });
+
+  $effect(() => {
+    handler.getContents();
   });
 </script>
 

@@ -5,8 +5,9 @@
   import type { VaporWaveWindowState } from "$states/declarations.svelte";
   import WindowButton from "$elements/common/window_button.svelte";
   import ErrorPopUp from "$elements/common/error_pop_up.svelte";
-  import type ContentType from "$models/utils.svelte";
+  import ContentType from "$models/utils.svelte";
   import { onMount } from "svelte";
+  import SvelteMarkdown from "svelte-markdown";
 
   let {
     text,
@@ -69,12 +70,18 @@
       />
     </div>
   </div>
-  <img
-    class="content"
-    src={content}
-    onclick={on_click_function}
-    alt="img for the content side"
-  />
+  {#if content_type === ContentType.Image}
+    <img
+      class="content"
+      src={content}
+      onclick={on_click_function}
+      alt="img for the content side"
+    />
+  {:else}
+    <div class="can_scroll">
+      <SvelteMarkdown source={content} />
+    </div>
+  {/if}
   {#if state.show_error_pop_up}
     <ErrorPopUp animation_options={error_pop_up_options} />
   {/if}
@@ -93,10 +100,6 @@
 
     position: fixed;
 
-    /*TODO: make this variable*/
-    /*width: 260px;*/
-    /*height: 262px;*/
-
     z-index: 0;
 
     background: #0e0f14;
@@ -114,9 +117,8 @@
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
-      padding: 0px 10px;
 
-      width: 92%;
+      width: 100%;
       height: 10%;
 
       background: linear-gradient(90deg, #a33638 9%, #542738 100%);
@@ -142,7 +144,6 @@
         flex-direction: row;
         align-items: center;
         justify-content: end;
-        padding: 0px;
         gap: 4px;
 
         margin: 0 auto;
@@ -156,7 +157,8 @@
       }
 
       text {
-        width: 70%;
+        padding-left: 10px;
+        width: 60%;
         text-align: left;
         font-size: 1.8em;
       }
@@ -184,6 +186,14 @@
         cursor: pointer;
         opacity: 1;
       }
+    }
+
+    .can_scroll {
+      width: 85%;
+      height: 100%;
+      scrollbar-color: #542738 #0e0f14;
+      scrollbar-width: thin;
+      overflow: scroll;
     }
   }
 </style>

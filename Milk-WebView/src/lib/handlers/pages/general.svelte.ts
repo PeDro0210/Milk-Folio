@@ -35,13 +35,13 @@ function pageMeHandler() {
   const content_getter = (): Content[] => {
     return [
       {
+        key: 0,
         title: "Home",
-        content: `
-        # Home Page
-                  `,
+        content: `# Home Page\nDummy Page Dummy Page\n`,
         content_type: ContentType.Markdown,
       },
       {
+        key: 1,
         title: "Random Image",
         content:
           "https://firebasestorage.googleapis.com/v0/b/fatipage-a0067.firebasestorage.app/o/milk-link%2Fsteam%2Faigis_steam_3.gif?alt=media&token=f50bd99e-2c8c-416a-bb6d-ecdc21e543ab",

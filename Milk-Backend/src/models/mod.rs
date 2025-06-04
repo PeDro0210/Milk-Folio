@@ -10,8 +10,8 @@ pub struct JsonContentLinks {
 
 // Can make this more generic, but I'm pretty tired
 #[derive(Deserialize, Debug)]
-pub struct Projects {
-    pub projects: Vec<JsonContentLinks>,
+pub struct GeneralJson {
+    pub data: Vec<JsonContentLinks>,
 }
 
 //Middle Ground
@@ -31,7 +31,7 @@ pub struct Routes {
 //Middle Ground
 
 //HTTP-Reponses
-#[derive(Debug, Serialize)]
+#[derive(Debug, Serialize, Clone)]
 pub struct Content {
     pub title: String,
     pub content: String,

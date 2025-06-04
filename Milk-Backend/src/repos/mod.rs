@@ -1,13 +1,39 @@
-use utils::parsed_json_content;
+use utils::{parsed_json_content, parsed_md};
 
-use crate::models::{Link, Routes};
+use crate::models::{Content, GeneralJson, JsonContentLinks, Link, Routes};
 
 mod utils;
 
 //TODO: Finish today before 6 PM
 
 pub fn routes_getter() -> Vec<Link> {
-    let route_mapper = parsed_json_content::<Routes>("/resources/json/routes.json");
+    // All of this will
+    let route_mapped = parsed_json_content::<Routes>("/resources/json/routes.json");
 
-    return route_mapper.routes;
+    return route_mapped.routes;
+}
+
+pub fn pages_getter(json_path: &str, md_path: &str) -> Vec<Content> {
+    let mut result: Vec<Content> = vec![];
+    let projects_mapped = parsed_json_content::<GeneralJson>(json_path);
+    let project_markdown_mapped = parsed_md(md_path);
+
+    //Pushes the markdown at first
+    result.push(Content {
+        title: "Projects".to_string(),
+        content: project_markdown_mapped,
+        content_type: "markdown".to_string(), //Idunno how I will mapped this on ts, but fuck it
+        link_redirection: None,
+    });
+
+    for project in projects_mapped.data {
+        result.push(Content {
+            title: project.title.clone(),
+            content: project.content.clone(),
+            content_type: "image".to_string(), //Idunno how I will mapped this on ts, but fuck it
+            link_redirection: Some(project.link_redirection.clone()), //Will return a redirection link in here
+        });
+    }
+
+    return result;
 }

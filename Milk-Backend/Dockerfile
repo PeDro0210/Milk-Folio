@@ -19,14 +19,12 @@ cargo build --release --locked
 cp ./target/release/$APP_NAME /bin/server
 EOF
 
-COPY ./resources/ /resources/
 
 FROM rust:${RUST_VERSION} AS final
 
-RUN apt install -y libpq-dev
 
 
-COPY --from=build /resources/ /resources/
+COPY ./resources/ /resources/
 COPY --from=build /bin/server /bin/
 
 EXPOSE 5050

@@ -1,8 +1,6 @@
 # About
 
-Yo, My name is Pedro Avila (cool latino name),
-I really like doing programming (Game Dev, Full Stack,
-Distribute Systems, Little of systems programming) and software architecture.
+Yo, My name is Pedro Avila (cool latino name), I really like doing programming (Game Dev, Full Stack, Distribute Systems, Little of systems programming) and software architecture.
 
 ## Liked Techs
 

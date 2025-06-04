@@ -6,4 +6,5 @@ export interface Content {
   title: string;
   content: string;
   content_type: ContentType;
+  link_redirection: string | null;
 }

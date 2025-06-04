@@ -23,8 +23,9 @@
       text={content_object.title}
       content={content_object.content}
       on_click_function={() => {
-        //TODO: add the link option for images only
-        //window.open(content_object.link, "_blank");
+        if (content_object.link_redirection) {
+          window.open(content_object.link_redirection, "_blank");
+        }
       }}
       content_type={content_object.content_type}
       key={content_object.key as number}

@@ -35,6 +35,7 @@ export interface PageContextState {
   links: Link[];
   content: Content[];
   start_menu_title: Pages;
+  first_time_links_fetched: boolean;
 }
 
 export enum AligmentTypes {

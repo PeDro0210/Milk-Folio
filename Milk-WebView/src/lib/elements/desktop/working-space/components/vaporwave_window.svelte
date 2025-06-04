@@ -147,7 +147,7 @@
         justify-content: end;
         gap: 4px;
 
-        margin: 0 auto;
+        margin: 0 10px;
         width: 30%;
         height: 100%;
 

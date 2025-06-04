@@ -5,4 +5,5 @@ export const page_context: PageContextState = $state({
   links: [],
   content: [],
   start_menu_title: Pages.home,
+  first_time_links_fetched: true, //For first time fetching
 });

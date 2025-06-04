@@ -13,17 +13,10 @@
   import { AligmentTypes } from "$states/declarations.svelte";
   import { Router } from "sv-router";
   import "$states/global.svelte";
-  import { onMount } from "svelte";
   import pageMeHandler from "./lib/handlers/pages/general.svelte";
+  import { page_context } from "$contexts/page.svelte";
 
-  onMount(() => {
-    let handler = pageMeHandler();
-    // Setting general links
-    handler.getLinks();
-
-    // ! DEBBUG
-    handler.getContent();
-  });
+  let page_handler = pageMeHandler();
 
   $effect(() => {
     window_state.changeInnerWidth();
@@ -39,6 +32,11 @@
         AligmentTypes.center.valueOf(),
       );
     }
+  });
+
+  $effect(() => {
+    page_handler.getLinks(page_context.start_menu_title);
+    page_handler.getContent(page_context.start_menu_title);
   });
 </script>
 

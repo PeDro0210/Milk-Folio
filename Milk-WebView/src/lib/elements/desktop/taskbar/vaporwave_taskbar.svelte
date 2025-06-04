@@ -34,7 +34,6 @@
   //Managing the resizing of the window-sidebar
   $effect(() => {
     window.addEventListener("resize", window_resizing);
-    console.log();
   });
 </script>
 

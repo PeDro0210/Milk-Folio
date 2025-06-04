@@ -34,7 +34,7 @@ export interface VaporWaveWindowState {
 export interface PageContextState {
   links: Link[];
   content: Content[];
-  start_menu_title: Pages;
+  start_menu_title: Pages | null;
   first_time_links_fetched: boolean;
 }
 

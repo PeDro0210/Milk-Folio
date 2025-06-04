@@ -4,6 +4,6 @@ import { type PageContextState, Pages } from "$states/declarations.svelte";
 export const page_context: PageContextState = $state({
   links: [],
   content: [],
-  start_menu_title: Pages.home,
+  start_menu_title: null,
   first_time_links_fetched: true, //For first time fetching
 });

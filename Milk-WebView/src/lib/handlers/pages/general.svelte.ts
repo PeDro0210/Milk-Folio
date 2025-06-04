@@ -19,38 +19,32 @@ function pageMeHandler() { //TODO:Implement API Call
           method: "get",
         },
       ).then((result: any) => {
-        resolve(result);
+        resolve(result.data);
       });
     } catch (error) {
       reject(error);
     }
   });
 
-  const content_getter = (actual_page: Pages): Content[] => {
-    // ! DUMMY DATA
-    return [
-      {
-        key: 0,
-        title: "Home",
-        content: `# Home Page\nDummy Page Dummy Page\n`,
-        content_type: ContentType.Markdown,
-        link_redirection: null,
-      },
-      {
-        key: 1,
-        title: "Random Image",
-        content:
-          "https://firebasestorage.googleapis.com/v0/b/fatipage-a0067.firebasestorage.app/o/milk-link%2Fsteam%2Faigis_steam_3.gif?alt=media&token=f50bd99e-2c8c-416a-bb6d-ecdc21e543ab",
-        content_type: ContentType.Image,
-        link_redirection: "https://www.instagram.com/p.e.d.r.o021/",
-      },
-    ];
+  const content_getter = (actual_page: Pages): Promise<any> => {
+    return new Promise<any>((resolve, reject) => {
+      try {
+        api({
+          url: "/" + actual_page.valueOf().toLocaleLowerCase(),
+          method: "get",
+        }).then((result: any) => {
+          resolve(result.data);
+        });
+      } catch (error) {
+        reject(error);
+      }
+    });
   };
 
   return {
     getLinks: async (actual_page: Pages) => {
-      link_getter.then((links) => {
-        page_context.links = links.data.filter((link: Link) => {
+      link_getter.then((links: Link[]) => {
+        page_context.links = links.filter((link: Link) => {
           if (
             link.title.toLocaleLowerCase() !==
             actual_page.valueOf().toLocaleLowerCase()
@@ -61,7 +55,9 @@ function pageMeHandler() { //TODO:Implement API Call
       });
     },
     getContent: (actual_page: Pages) => {
-      page_context.content = content_getter(actual_page);
+      content_getter(actual_page).then((result: Content[]) => {
+        page_context.content = result;
+      });
     },
     setStartMenuTitle: (title: Pages) => {
       page_context.start_menu_title = title;

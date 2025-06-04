@@ -2,11 +2,11 @@ import type { Content } from "$models/content.svelte";
 import type { Link } from "$models/links.svelte";
 import ContentType from "$models/utils.svelte";
 import type { Pages } from "$states/declarations.svelte";
-import { page_context } from "../contexts/page.svelte";
+import { page_context } from "$contexts/page.svelte";
 
 function pageMeHandler() { //TODO:Implement API Call
   //TODO: Just call once
-  const link_getter = (actual_page: Pages): Link[] => {
+  const link_getter = (): Link[] => {
     //For not refetching the API
     if (!(page_context.first_time_links_fetched)) {
       return page_context.links;
@@ -59,7 +59,7 @@ function pageMeHandler() { //TODO:Implement API Call
 
   return {
     getLinks: (actual_page: Pages) => {
-      page_context.links = link_getter(actual_page).filter((link) => {
+      page_context.links = link_getter().filter((link) => {
         if (link.title !== actual_page.valueOf()) {
           return link;
         }

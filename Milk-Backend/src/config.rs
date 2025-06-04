@@ -10,9 +10,6 @@ pub struct Env {
 
     #[envconfig(from = "WEBVIEW_URL")]
     pub webview_url: String,
-
-    #[envconfig(from = "REDIS_URL")]
-    pub redis_url: String,
 }
 
 impl Env {

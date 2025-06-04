@@ -1,12 +1,11 @@
 mod config;
-mod handlers;
+mod endpoints;
+mod models;
 mod repos;
-mod schemas;
 
 use actix_cors::Cors;
 use actix_web::{App, HttpServer};
 use config::Env;
-use handlers::endpoints::app_config;
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
@@ -26,7 +25,8 @@ async fn main() -> std::io::Result<()> {
             .allow_any_header()
             .max_age(3600);
 
-        App::new().configure(app_config).wrap(cors)
+        //TODO: Add configurations
+        App::new().wrap(cors)
     })
     .bind((host, port))?
     .run()

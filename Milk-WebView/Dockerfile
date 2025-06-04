@@ -7,7 +7,7 @@ WORKDIR /Milk-WebView-dir
 #Creating build
 COPY package*.json ./
 
-RUN npm ci
+RUN npm ci --force
 
 COPY . .
 

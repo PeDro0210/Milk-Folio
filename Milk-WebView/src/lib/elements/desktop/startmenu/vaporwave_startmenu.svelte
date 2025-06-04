@@ -1,5 +1,4 @@
 <script lang="ts">
-  import LinkButtons from "./components/link_buttons.svelte";
   import { slide } from "svelte/transition";
   import { onMount } from "svelte";
   import startMenuHandler from "$handlers/startmenu.svelte";

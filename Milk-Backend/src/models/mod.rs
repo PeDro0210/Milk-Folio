@@ -33,6 +33,7 @@ pub struct Routes {
 //HTTP-Reponses
 #[derive(Debug, Serialize, Clone)]
 pub struct Content {
+    pub key: i32,
     pub title: String,
     pub content: String,
     pub content_type: String,

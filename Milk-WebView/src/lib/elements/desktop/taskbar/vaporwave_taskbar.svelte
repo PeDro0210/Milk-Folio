@@ -1,7 +1,6 @@
 <script lang="ts">
   import Clock from "$commonElements/clock.svelte";
   import Separator from "./components/separator.svelte";
-  import TaskbarButtons from "./components/taskbar_buttons.svelte";
   import { start_button_attributes } from "./utils/constant";
   import { onMount } from "svelte";
   import { reactivity_startmenu_state } from "$states/global.svelte";

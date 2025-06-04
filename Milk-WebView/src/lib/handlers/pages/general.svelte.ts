@@ -3,38 +3,28 @@ import type { Link } from "$models/links.svelte";
 import ContentType from "$models/utils.svelte";
 import type { Pages } from "$states/declarations.svelte";
 import { page_context } from "$contexts/page.svelte";
+import { api } from "$states/global.svelte";
 
 function pageMeHandler() { //TODO:Implement API Call
   //TODO: Just call once
-  const link_getter = (): Link[] => {
-    //For not refetching the API
-    if (!(page_context.first_time_links_fetched)) {
-      return page_context.links;
+  const link_getter = new Promise<any>((resolve, reject) => {
+    try {
+      //For not refetching the API
+      if (!(page_context.first_time_links_fetched)) {
+        resolve(page_context.links);
+      }
+      api(
+        {
+          url: "/links",
+          method: "get",
+        },
+      ).then((result: any) => {
+        resolve(result);
+      });
+    } catch (error) {
+      reject(error);
     }
-    //TODO: Change to the API CALL
-    let result = [
-      {
-        image:
-          "https://firebasestorage.googleapis.com/v0/b/fatipage-a0067.firebasestorage.app/o/milk-link%2Ftwitter%2FGG_discord_3.gif?alt=media&token=98657a10-f99f-4834-93d9-2ddc7c20d12b",
-        title: "Home",
-        link: "/",
-      },
-      {
-        image:
-          "https://firebasestorage.googleapis.com/v0/b/fatipage-a0067.firebasestorage.app/o/milk-link%2Ftwitter%2FGG_discord_3.gif?alt=media&token=98657a10-f99f-4834-93d9-2ddc7c20d12b",
-        title: "About",
-        link: "/about",
-      },
-      {
-        image:
-          "https://firebasestorage.googleapis.com/v0/b/fatipage-a0067.firebasestorage.app/o/milk-link%2Ftwitter%2FGG_discord_3.gif?alt=media&token=98657a10-f99f-4834-93d9-2ddc7c20d12b",
-        title: "Projects",
-        link: "/projects",
-      },
-    ];
-
-    return result;
-  };
+  });
 
   const content_getter = (actual_page: Pages): Content[] => {
     // ! DUMMY DATA
@@ -58,11 +48,16 @@ function pageMeHandler() { //TODO:Implement API Call
   };
 
   return {
-    getLinks: (actual_page: Pages) => {
-      page_context.links = link_getter().filter((link) => {
-        if (link.title !== actual_page.valueOf()) {
-          return link;
-        }
+    getLinks: async (actual_page: Pages) => {
+      link_getter.then((links) => {
+        page_context.links = links.data.filter((link: Link) => {
+          if (
+            link.title.toLocaleLowerCase() !==
+            actual_page.valueOf().toLocaleLowerCase()
+          ) {
+            return link;
+          }
+        });
       });
     },
     getContent: (actual_page: Pages) => {

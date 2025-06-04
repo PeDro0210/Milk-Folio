@@ -11,8 +11,10 @@ function windowHandler(window: Window & typeof globalThis, key: number) {
       (150 * key).toString(),
     y_position: window.localStorage.getItem("positionY" + key) ??
       (-100 * key).toString(),
-    width: "",
-    height: "",
+    window_proportion_height: 0,
+    window_proportion_width: 0,
+    app_bar_height: 0,
+    content_height: 0,
     appbar_grabbed: false,
     show_error_pop_up: false,
   });
@@ -48,12 +50,21 @@ function windowHandler(window: Window & typeof globalThis, key: number) {
     e.currentTarget.style.zIndex = "1";
   };
 
-  let dynamic_window_size = (window_type: ContentType): string[] => {
+  let dynamic_size = (window_type: ContentType): number[][] => {
     switch (window_type) {
       case ContentType.Image:
-        return ["264px", "264px"];
+        return [
+          [264, 264],
+          //Bar size
+          [10],
+        ];
+
       case ContentType.Markdown:
-        return ["480px", "640px"];
+        return [
+          [480, 640],
+          //Bar size
+          [6],
+        ];
     }
   };
 
@@ -77,10 +88,13 @@ function windowHandler(window: Window & typeof globalThis, key: number) {
       }, 3000);
     },
     OnChangeWindowProportion: (window_type: ContentType) => {
-      let [width, height] = dynamic_window_size(window_type);
+      let [window_proportions, appbar_proportion] = dynamic_size(window_type);
 
-      state.width = width;
-      state.height = height;
+      state.window_proportion_height = window_proportions.at(0) as number;
+      state.window_proportion_width = window_proportions.at(1) as number;
+
+      state.app_bar_height = appbar_proportion.at(0) as number;
+      state.content_height = appbar_proportion.at(0) as number - 100;
     },
   };
 }

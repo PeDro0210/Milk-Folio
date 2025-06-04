@@ -44,12 +44,13 @@
 
 <div
   class="window"
-  style="transform: translate({state.x_position}px,{state.y_position}px); width: {state.width}; height: {state.height};"
+  style="width:{state.window_proportion_width}px; height:{state.window_proportion_height}px; transform: translate({state.x_position}px,{state.y_position}px);"
   onmouseup={handler.onMoveToFront}
 >
   <!-- the button is or making the compiler happy-->
   <div
     class="app-bar"
+    style="height: {state.app_bar_height}%;"
     onmousedown={() => {
       handler.onAppbarGrabbed(true);
     }}
@@ -170,7 +171,7 @@
       box-sizing: border-box;
 
       width: 100%;
-      height: 90%;
+      height: 90%; /*Make this also dynamic*/
 
       border-width: 2px 1px 1px 2px;
       border-style: solid;
@@ -191,6 +192,7 @@
     .can_scroll {
       width: 85%;
       height: 100%;
+
       scrollbar-color: #542738 #0e0f14;
       scrollbar-width: thin;
       overflow: scroll;

@@ -23,8 +23,10 @@ export interface TaskBarState {
 export interface VaporWaveWindowState {
   x_position: string;
   y_position: string;
-  width: string;
-  height: string;
+  window_proportion_width: number;
+  window_proportion_height: number;
+  app_bar_height: number;
+  content_height: number;
   appbar_grabbed: boolean;
   show_error_pop_up: boolean;
 }

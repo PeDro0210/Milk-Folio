@@ -1,11 +1,11 @@
-
 ARG RUST_VERSION=1.84.1
 ARG APP_NAME=Milk-Backend
-FROM rust:${RUST_VERSION}-slim-bullseye AS build
+FROM rust:${RUST_VERSION} AS build
 ARG APP_NAME
 WORKDIR /app
 
 
+RUN 
 # THx docker docks :D
 #For taking advatange of rust cache
 RUN --mount=type=bind,source=src,target=src \
@@ -15,18 +15,22 @@ RUN --mount=type=bind,source=src,target=src \
   --mount=type=cache,target=/usr/local/cargo/registry/ \
   <<EOF
 set -e
-cargo build --locked --release
+cargo build --release --locked
 cp ./target/release/$APP_NAME /bin/server
 EOF
 
-FROM debian:bullseye-slim AS final
+COPY ./resources/ /resources/
 
+FROM rust:${RUST_VERSION} AS final
+
+RUN apt install -y libpq-dev
+
+
+COPY --from=build /resources/ /resources/
 COPY --from=build /bin/server /bin/
 
-EXPOSE 5000
+EXPOSE 5050
 
 CMD ["/bin/server"]
-
-
 
 

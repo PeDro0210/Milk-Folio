@@ -4,9 +4,10 @@
   import TaskbarButtons from "./components/taskbar_buttons.svelte";
   import { start_button_attributes } from "./utils/constant";
   import { onMount } from "svelte";
-  import type { TaskBarState } from "$states/declarations.svelte";
   import { reactivity_startmenu_state } from "$states/global.svelte";
   import taskbarHandler from "$handlers/taskbar.svelte";
+  import MilkButton from "$elements/common/milk_button.svelte";
+  import type { TaskBarState } from "$states/declarations.svelte";
 
   //let's not talk about this stupid workaround
 
@@ -38,9 +39,10 @@
 </script>
 
 <div id="taskbar">
-  <TaskbarButtons
+  <MilkButton
     icon_url={start_button_attributes.icon}
-    width={start_button_attributes.width}
+    width={"120px"}
+    height={"40px"}
     text={start_button_attributes.text}
     on_click_function={reactivity_startmenu_state.toggle}
   />
@@ -49,9 +51,10 @@
 
   <div id="windows-side">
     {#each state.links_list as button}
-      <TaskbarButtons
+      <MilkButton
         icon_url={button.image as string}
-        width={null}
+        width={"256px"}
+        height={"40px"}
         text={button.title}
         on_click_function={() => {
           window.open(button.link, "_self");

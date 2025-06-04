@@ -1,5 +1,6 @@
 import ContentType from "$models/utils.svelte";
 import type { VaporWaveWindowState } from "$states/declarations.svelte";
+import { getRandomBetween } from "./utils.svelte";
 
 /*
  *  First rule before anything, simplicty before doing weird sheningangs,
@@ -8,9 +9,9 @@ import type { VaporWaveWindowState } from "$states/declarations.svelte";
 function windowHandler(window: Window & typeof globalThis, key: number) {
   let state: VaporWaveWindowState = $state({
     x_position: window.localStorage.getItem("positionX" + key) ??
-      (150 * key).toString(),
+      (getRandomBetween(-700, 700)).toString(),
     y_position: window.localStorage.getItem("positionY" + key) ??
-      (-100 * key).toString(),
+      (getRandomBetween(-400, 100)).toString(),
     window_proportion_height: 0,
     window_proportion_width: 0,
     app_bar_height: 0,

@@ -10,7 +10,7 @@
     reactivity_startmenu_state,
     window_state,
   } from "$states/global.svelte";
-  import { AligmentTypes } from "$states/declarations.svelte";
+  import { AligmentTypes, Pages } from "$states/declarations.svelte";
   import { Router } from "sv-router";
   import "$states/global.svelte";
   import pageMeHandler from "./lib/handlers/pages/general.svelte";
@@ -35,8 +35,8 @@
   });
 
   $effect(() => {
-    page_handler.getLinks(page_context.start_menu_title);
-    page_handler.getContent(page_context.start_menu_title);
+    page_handler.getLinks(page_context.start_menu_title as Pages);
+    page_handler.getContent(page_context.start_menu_title as Pages);
   });
 </script>
 

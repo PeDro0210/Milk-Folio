@@ -1,6 +1,7 @@
 :root {
   font-family: 'Jersey 10';
 
+  --border-color: #542738;
   line-height: 2;
   font-weight: 400;
 
@@ -74,10 +75,6 @@ body {
     box-sizing: border-box;
 
 
-    border-width: 0px 1px 1px 0px;
-    border-style: solid;
-    border-color: #3a3a3a;
-
     /* Inside auto layout */
     flex: none;
     order: 0;
@@ -136,7 +133,7 @@ body {
   button {
     border-width: 0px 1px 1px 0px;
     border-style: solid;
-    border-color: #3a3a3a;
+    border-color: var(--border-color);
 
 
     &:active {

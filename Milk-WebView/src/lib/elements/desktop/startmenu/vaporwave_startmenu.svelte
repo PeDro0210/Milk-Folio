@@ -5,6 +5,7 @@
   import startMenuHandler from "$handlers/startmenu.svelte";
   import type { StartMenuState } from "$states/declarations.svelte";
   import { reactivity_startmenu_state } from "$states/global.svelte";
+  import MilkButton from "$elements/common/milk_button.svelte";
 
   let options = { duration: 50, x: "75vh" };
 
@@ -30,12 +31,14 @@
     </div>
     <div id="content-side">
       {#each state.links_list as button}
-        <LinkButtons
+        <MilkButton
           icon_url={button.image as string}
           text={button.title}
           on_click_function={() => {
             window.open(button.link, "_self");
           }}
+          height={"52px"}
+          width={"100%"}
         />
       {/each}
     </div>
@@ -62,7 +65,7 @@
     pointer-events: auto;
 
     background: #0e0f14;
-    border-right: 2px solid #3a3a3a;
+    border-right: 2px solid var(--border-color);
     box-shadow: 4px 0px 4px rgba(0, 0, 0, 0.25);
   }
 

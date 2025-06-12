@@ -25,7 +25,6 @@
 {#if !reactivity_startmenu_state.slide_start_menu}
   <div id="start-menu" transition:slide={options}>
     <div id="title-bar">
-      <!--TODO: Make the title-bar part be managable in the state-->
       <text>{state.start_menu_title}</text>
     </div>
     <div id="content-side">

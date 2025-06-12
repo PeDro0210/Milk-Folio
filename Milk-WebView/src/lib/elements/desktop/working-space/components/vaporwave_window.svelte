@@ -44,7 +44,7 @@
 
 <div
   class="window"
-  style="width:{state.window_proportion_width}px; height:{state.window_proportion_height}px; transform: translate({state.x_position}px,{state.y_position}px);"
+  style="width:{state.window_proportion_width}px; height:{state.window_proportion_height}px; transform: translate({state.x_position}px,{state.y_position}px); animation-duration: 3000ms"
   onmouseup={handler.onMoveToFront}
 >
   <!-- the button is or making the compiler happy-->
@@ -109,6 +109,18 @@
     border-color: var(--border-color);
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
 
+    offset-path: path("M -1 0 C -1 -2 3 -2 3 0 C 3 2 -1 2 -1 0");
+    offset-rotate: 0deg;
+    animation: move infinite forwards ease-in-out;
+
+    @keyframes move {
+      0% {
+        offset-distance: 0%;
+      }
+      100% {
+        offset-distance: 100%;
+      }
+    }
     .app-bar {
       /* little-window-bar */
 

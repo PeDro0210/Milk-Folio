@@ -25,11 +25,11 @@
           pkgs = nixpkgs.legacyPackages.${system};
           naerskLib = pkgs.callPackage naersk { };
 
-          rust_base_lib = with pkgs; [
+          base_lib = with pkgs; [
             dbus
           ];
 
-          rust_std_bin = with pkgs; [
+          std_bin = with pkgs; [
             cmake
             clang
             pkg-config
@@ -39,6 +39,11 @@
             clippy
             rustfmt
             taplo-lsp # lsp for cargo.toml
+
+            svelte-language-server
+            nodejs
+            typescript-language-server
+
           ];
         in
         {
@@ -48,10 +53,10 @@
 
             src = ./milk-backend/.;
 
-            buildInputs = rust_base_lib;
-            nativeBuildInputs = rust_std_bin;
+            buildInputs = base_lib;
+            nativeBuildInputs = std_bin;
 
-            LD_LIBRARY_PATH = rust_base_lib;
+            LD_LIBRARY_PATH = base_lib;
 
             LIBCLANG_PATH = "${pkgs.llvmPackages_15.libclang.lib}/lib";
           };

@@ -1,6 +1,6 @@
 <h1 align="center">Milk-Folio</h1>
 
-<h3 align="center">The Milk-Link was so good, that it get a sequel</h3>
+<h3 align="center">The Milk-Link was so good, that it got a sequel</h3>
 
 <p align="center"><img src="./Milk-WebView/src/assets/start_icon_button.gif"></p>
 

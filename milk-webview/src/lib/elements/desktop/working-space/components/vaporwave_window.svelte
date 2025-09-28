@@ -30,8 +30,16 @@
 
   let state: VaporWaveWindowState = $state(handler.getState());
 
+  let window_resizing = async () => {
+    handler.onMobileLayout();
+  };
+
   onMount(() => {
     handler.onChangeWindowProportion(content_type);
+  });
+
+  $effect(() => {
+    window.addEventListener("resize", window_resizing);
   });
 </script>
 

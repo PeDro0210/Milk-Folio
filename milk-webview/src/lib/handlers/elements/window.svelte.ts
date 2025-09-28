@@ -1,5 +1,6 @@
 import ContentType from "$models/utils.svelte";
 import type { VaporWaveWindowState } from "$states/declarations.svelte";
+import { window_state } from "$states/global.svelte";
 import { CONTENT_OFFSET, ERROR_TIMEOUT, IMAGE_WINDOW_BAR_SIZE, IMAGE_WINDOW_PROPORTIONS, MARKDOWN_WINDOW_BAR_SIZE, MARKDOWN_WINDOW_PROPORTIONS } from "./global";
 import { getRandomBetween } from "./utils.svelte";
 
@@ -107,6 +108,10 @@ function windowHandler(window: Window & typeof globalThis, key: number) {
       state.content_height = appbar_proportion.at(0) as number - CONTENT_OFFSET;
     },
 
+    /** changes the width of each window to the device width*/
+    onMobileLayout: () => {
+      if (window_state.window_width < 700) state.window_proportion_width = window_state.window_width;
+    }
   };
 }
 

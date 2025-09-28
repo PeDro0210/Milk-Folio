@@ -21,6 +21,7 @@ body {
   margin: 0;
   display: flex;
   place-items: center;
+  overflow: hidden;
   min-width: 100%;
   min-height: 100%;
 }
@@ -39,7 +40,6 @@ body {
   -o-background-size: cover;
   background-size: cover;
 
-  overflow: scroll;
 
   crt-filter::before {
     content: " ";

@@ -41,14 +41,3 @@
     />
   {/each}
 </div>
-
-<style lang="scss">
-  #desktop {
-    display: var(--dekstop-display);
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
-    overflow-y: scroll;
-    width: 100%;
-  }
-</style>

@@ -15,7 +15,6 @@
   import "$states/global.svelte";
   import pageMeHandler from "./lib/handlers/pages/general.svelte";
   import { page_context } from "$contexts/page.svelte";
-  import Device from "svelte-device-info";
 
   let page_handler = pageMeHandler();
 
@@ -26,12 +25,13 @@
     //for running the  if statement down bewlo
     let effect_activator = reactivity_startmenu_state.slide_start_menu;
 
-    if (Device.isMobile) {
-      reactivity_startmenu_state.changeSelfAlign(AligmentTypes.start.valueOf());
-    } else {
+    // for lower resolutions let's say it's in a phone
+    if (window_state.window_width < 700) {
       reactivity_startmenu_state.changeSelfAlign(
         AligmentTypes.center.valueOf(),
       );
+    } else {
+      reactivity_startmenu_state.changeSelfAlign(AligmentTypes.start.valueOf());
     }
   });
 
@@ -56,15 +56,15 @@
   </main>
 
   <hud>
-    {#if Device.isMobile}
+    {#if window_state.window_width < 700}
+      <VaporwaveAppbar />
+      <VaporwaveStartmenu />
+      <VaporwaveNavbar />
+    {:else}
       <!--- need to re "instanciate" cause the AppBar--->
       <VaporwaveStartmenu />
 
       <VaporwaveTaskbar />
-    {:else}
-      <VaporwaveAppbar />
-      <VaporwaveStartmenu />
-      <VaporwaveNavbar />
     {/if}
   </hud>
 </crt-filter>

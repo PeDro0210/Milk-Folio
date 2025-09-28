@@ -1,8 +1,12 @@
 export const IMAGE_WINDOW_PROPORTIONS = [264, 264];
 export const IMAGE_WINDOW_BAR_SIZE = 10;
 
+export const IMAGE_HEIGHT_MOBILE = 640;
+
 export const MARKDOWN_WINDOW_PROPORTIONS = [480, 640];
 export const MARKDOWN_WINDOW_BAR_SIZE = 10;
+
+
 
 export const CONTENT_OFFSET = 100;
 

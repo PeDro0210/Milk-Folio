@@ -8,6 +8,7 @@
   import ContentType from "$models/utils.svelte";
   import { onMount } from "svelte";
   import SvelteMarkdown from "svelte-markdown";
+  import { window_state } from "$states/global.svelte";
 
   let {
     text,
@@ -31,7 +32,11 @@
   let state: VaporWaveWindowState = $state(handler.getState());
 
   let window_resizing = async () => {
-    handler.onMobileLayout();
+    if (window_state.window_width < 700) {
+      handler.onMobileLayout(content_type);
+      return;
+    }
+    handler.onChangeWindowProportion(content_type);
   };
 
   onMount(() => {

@@ -1,7 +1,7 @@
 import ContentType from "$models/utils.svelte";
 import type { VaporWaveWindowState } from "$states/declarations.svelte";
 import { window_state } from "$states/global.svelte";
-import { CONTENT_OFFSET, ERROR_TIMEOUT, IMAGE_WINDOW_BAR_SIZE, IMAGE_WINDOW_PROPORTIONS, MARKDOWN_WINDOW_BAR_SIZE, MARKDOWN_WINDOW_PROPORTIONS } from "./global";
+import { CONTENT_OFFSET, ERROR_TIMEOUT, IMAGE_HEIGHT_MOBILE, IMAGE_WINDOW_BAR_SIZE, IMAGE_WINDOW_PROPORTIONS, MARKDOWN_WINDOW_BAR_SIZE, MARKDOWN_WINDOW_PROPORTIONS } from "./global";
 import { getRandomBetween } from "./utils.svelte";
 
 
@@ -77,6 +77,7 @@ function windowHandler(window: Window & typeof globalThis, key: number) {
     }
   };
 
+
   return {
     getState: () => {
       return state;
@@ -110,9 +111,12 @@ function windowHandler(window: Window & typeof globalThis, key: number) {
     },
 
     /** changes the width of each window to the device width*/
-    onMobileLayout: () => {
-      if (window_state.window_width < 700) {
-        state.window_proportion_width = window_state.window_width;
+    onMobileLayout: (window_type: ContentType) => {
+      state.window_proportion_width = window_state.window_width;
+
+      // in case for image window
+      if (window_type == ContentType.Image) {
+        state.window_proportion_height = IMAGE_HEIGHT_MOBILE;
       }
     }
   };

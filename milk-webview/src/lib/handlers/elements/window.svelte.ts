@@ -1,12 +1,9 @@
 import ContentType from "$models/utils.svelte";
 import type { VaporWaveWindowState } from "$states/declarations.svelte";
-import { ERROR_TIMEOUT, IMAGE_WINDOW_BAR_SIZE, IMAGE_WINDOW_PROPORTIONS, MARKDOWN_WINDOW_BAR_SIZE, MARKDOWN_WINDOW_PROPORTIONS } from "./global";
+import { CONTENT_OFFSET, ERROR_TIMEOUT, IMAGE_WINDOW_BAR_SIZE, IMAGE_WINDOW_PROPORTIONS, MARKDOWN_WINDOW_BAR_SIZE, MARKDOWN_WINDOW_PROPORTIONS } from "./global";
 import { getRandomBetween } from "./utils.svelte";
 
-/*
- *  First rule before anything, simplicty before doing weird sheningangs,
- *  The only way those are acceptable, is if they are faster, then... is just useless
- */
+
 function windowHandler(window: Window & typeof globalThis, key: number) {
   let state: VaporWaveWindowState = $state({
 
@@ -61,7 +58,6 @@ function windowHandler(window: Window & typeof globalThis, key: number) {
   /**
    * Method for fetching the size of the window, depending on which type is
   */
-  // TODO: change proportions to not use magic numbers
   let dynamic_size = (window_type: ContentType): number[][] => {
     switch (window_type) {
       case ContentType.Image:
@@ -87,6 +83,7 @@ function windowHandler(window: Window & typeof globalThis, key: number) {
     onMoveToFront: (e: any) => {
       move_to_front(e);
     },
+    /**transforms the position for this window, depending on the mouse position*/
     onWindowPositionChange: (e: any) => {
       [state.x_position, state.y_position] = window_position_changer(e);
     },
@@ -99,15 +96,17 @@ function windowHandler(window: Window & typeof globalThis, key: number) {
         state.show_error_pop_up = false;
       }, ERROR_TIMEOUT);
     },
-    OnChangeWindowProportion: (window_type: ContentType) => {
+    /** given a window type, it sets the proportions for it*/
+    onChangeWindowProportion: (window_type: ContentType) => {
       let [window_proportions, appbar_proportion] = dynamic_size(window_type);
 
       state.window_proportion_height = window_proportions.at(0) as number;
       state.window_proportion_width = window_proportions.at(1) as number;
 
       state.app_bar_height = appbar_proportion.at(0) as number;
-      state.content_height = appbar_proportion.at(0) as number - 100;
+      state.content_height = appbar_proportion.at(0) as number - CONTENT_OFFSET;
     },
+
   };
 }
 

@@ -31,7 +31,7 @@
   let state: VaporWaveWindowState = $state(handler.getState());
 
   onMount(() => {
-    handler.OnChangeWindowProportion(content_type);
+    handler.onChangeWindowProportion(content_type);
   });
 </script>
 

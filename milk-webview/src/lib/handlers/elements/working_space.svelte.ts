@@ -12,7 +12,6 @@ function workingSpaceHandler() {
     content_list: [],
   });
 
-  //TODO: implement context grabbing
   let fetcher = () => {
     return page_context.content;
   };

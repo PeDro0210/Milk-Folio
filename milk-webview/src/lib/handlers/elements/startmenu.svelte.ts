@@ -1,11 +1,10 @@
 import { page_context } from "$contexts/page.svelte";
 import {
   LoadableElements,
-  type PageContextState,
   Pages,
   type StartMenuState,
 } from "$states/declarations.svelte";
-import { api, loading_state } from "$states/global.svelte";
+import { loading_state } from "$states/global.svelte";
 
 function startMenuHandler() {
   let state: StartMenuState = $state({
@@ -13,9 +12,7 @@ function startMenuHandler() {
     start_menu_title: Pages.home.valueOf(),
   });
 
-  //TODO: implement context grabbing
-
-  let loaderSetter = () => {
+  let loader_setter = () => {
     loading_state.setLoaded(LoadableElements.startmenu);
   };
 
@@ -26,7 +23,7 @@ function startMenuHandler() {
     getLinks: async () => {
       state.links_list = page_context.links;
     },
-    setLoaded: loaderSetter(),
+    setLoaded: loader_setter(),
     setNewStartMenuName: () => {
       state.start_menu_title = page_context.start_menu_title as string;
     },

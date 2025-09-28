@@ -12,22 +12,18 @@ function workingSpaceHandler() {
     content_list: [],
   });
 
-  let fetcher = () => {
-    return page_context.content;
-  };
-
-  let loaderSetter = () => {
-    loading_state.setLoaded(LoadableElements.desktop);
-  };
 
   return {
     getState: () => {
       return state;
     },
     getContents: async () => {
-      state.content_list = fetcher();
+      state.content_list = page_context.content;
     },
-    setLoaded: loaderSetter(),
+    setLoaded: () => {
+      loading_state.setLoaded(LoadableElements.desktop);
+    },
+    onMobileSetup: () => { }
   };
 }
 

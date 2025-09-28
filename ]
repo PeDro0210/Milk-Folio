@@ -86,8 +86,7 @@ function windowHandler(window: Window & typeof globalThis, key: number) {
     },
     /**transforms the position for this window, depending on the mouse position*/
     onWindowPositionChange: (e: any) => {
-      // in case we are in mobileLayout, we won't let the window move
-      if (window_state.window_width > 700) [state.x_position, state.y_position] = window_position_changer(e);
+      [state.x_position, state.y_position] = window_position_changer(e);
     },
     onAppbarGrabbed: (new_value: boolean) => {
       state.appbar_grabbed = new_value;

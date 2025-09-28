@@ -17,7 +17,7 @@
   });
 </script>
 
-<div class="desktop">
+<div id="desktop">
   {#each state.content_list as content_object}
     <VaporwaveWindow
       text={content_object.title}

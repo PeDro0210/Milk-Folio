@@ -17,9 +17,6 @@ function taskbarHandler() {
     time: new Date(),
   });
 
-  let state_getter = () => {
-    return state;
-  };
 
   //TODO: implement context grabbing
 
@@ -45,7 +42,7 @@ function taskbarHandler() {
   };
 
   return {
-    getState: state_getter,
+    getState: () => { return state; },
     getLinks: () => {
       state.links_list = page_context.links;
     },

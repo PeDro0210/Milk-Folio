@@ -23,6 +23,7 @@
   "dependencies": {
     "axios": "^1.8.4",
     "sv-router": "^0.5.0",
+    "svelte-device-info": "^1.0.6",
     "svelte-markdown": "^0.4.1",
     "typescript-svelte-plugin": "^0.3.47",
     "vite-tsconfig-paths": "^5.1.4"

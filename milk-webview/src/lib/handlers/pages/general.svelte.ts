@@ -27,7 +27,6 @@ function pageMeHandler() {
   const content_getter = (actual_page: Pages): Promise<any> => {
     return new Promise<any>((resolve, reject) => {
       try {
-        console.log(api.getUri())
         api({
           url: "/" + actual_page.valueOf().toLocaleLowerCase(),
           method: "get",

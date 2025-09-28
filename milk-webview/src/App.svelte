@@ -15,6 +15,7 @@
   import "$states/global.svelte";
   import pageMeHandler from "./lib/handlers/pages/general.svelte";
   import { page_context } from "$contexts/page.svelte";
+  import Device from "svelte-device-info";
 
   let page_handler = pageMeHandler();
 
@@ -25,7 +26,7 @@
     //for running the  if statement down bewlo
     let effect_activator = reactivity_startmenu_state.slide_start_menu;
 
-    if (window_state.window_width > 700) {
+    if (Device.isMobile) {
       reactivity_startmenu_state.changeSelfAlign(AligmentTypes.start.valueOf());
     } else {
       reactivity_startmenu_state.changeSelfAlign(
@@ -55,7 +56,7 @@
   </main>
 
   <hud>
-    {#if window_state.window_width > 700}
+    {#if Device.isMobile}
       <!--- need to re "instanciate" cause the AppBar--->
       <VaporwaveStartmenu />
 

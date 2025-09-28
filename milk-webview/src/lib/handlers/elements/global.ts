@@ -4,6 +4,8 @@ export const IMAGE_WINDOW_BAR_SIZE = 10;
 export const MARKDOWN_WINDOW_PROPORTIONS = [480, 640];
 export const MARKDOWN_WINDOW_BAR_SIZE = 10;
 
+export const ERROR_TIMEOUT = 3000;
+
 
 
 

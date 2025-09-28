@@ -17,7 +17,7 @@ async fn main() -> std::io::Result<()> {
 
     let webview_url = config.webview_url;
     // I'll rather inject in it
-    //std::env::set_var("RUST_LOG", "debug"); // WHAT, RUST 2024, WTF WHY THIS UNSAFE
+    std::env::set_var("RUST_LOG", "debug"); 
     env_logger::init();
 
     HttpServer::new(move || {

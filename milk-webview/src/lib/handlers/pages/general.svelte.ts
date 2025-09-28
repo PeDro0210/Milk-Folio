@@ -1,12 +1,10 @@
 import type { Content } from "$models/content.svelte";
 import type { Link } from "$models/links.svelte";
-import ContentType from "$models/utils.svelte";
 import type { Pages } from "$states/declarations.svelte";
 import { page_context } from "$contexts/page.svelte";
 import { api } from "$states/global.svelte";
 
-function pageMeHandler() { //TODO:Implement API Call
-  //TODO: Just call once
+function pageMeHandler() {
   const link_getter = new Promise<any>((resolve, reject) => {
     try {
       //For not refetching the API

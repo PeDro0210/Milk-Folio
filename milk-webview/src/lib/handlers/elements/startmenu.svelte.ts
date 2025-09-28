@@ -28,7 +28,7 @@ function startMenuHandler() {
     },
     setLoaded: loaderSetter(),
     setNewStartMenuName: () => {
-      state.start_menu_title = page_context.start_menu_title;
+      state.start_menu_title = page_context.start_menu_title as string;
     },
   };
 }

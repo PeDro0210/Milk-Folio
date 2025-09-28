@@ -1,5 +1,6 @@
 import ContentType from "$models/utils.svelte";
 import type { VaporWaveWindowState } from "$states/declarations.svelte";
+import { ERROR_TIMEOUT, IMAGE_WINDOW_BAR_SIZE, IMAGE_WINDOW_PROPORTIONS, MARKDOWN_WINDOW_BAR_SIZE, MARKDOWN_WINDOW_PROPORTIONS } from "./global";
 import { getRandomBetween } from "./utils.svelte";
 
 /*
@@ -8,10 +9,14 @@ import { getRandomBetween } from "./utils.svelte";
  */
 function windowHandler(window: Window & typeof globalThis, key: number) {
   let state: VaporWaveWindowState = $state({
+
+    // I got kinda stressed for this 2 to be so close
     x_position: window.localStorage.getItem("positionX" + key) ??
       (getRandomBetween(-700, 700)).toString(),
+
     y_position: window.localStorage.getItem("positionY" + key) ??
       (getRandomBetween(-400, 100)).toString(),
+
     window_proportion_height: 0,
     window_proportion_width: 0,
     app_bar_height: 0,
@@ -44,27 +49,33 @@ function windowHandler(window: Window & typeof globalThis, key: number) {
       ".window",
     ) as NodeListOf<HTMLElement>;
 
+    // We reset them all
     all_windows.forEach((win) => {
       win.style.zIndex = "0";
     });
 
+    // and then ta ra, put them above
     e.currentTarget.style.zIndex = "1";
   };
 
+  /**
+   * Method for fetching the size of the window, depending on which type is
+  */
+  // TODO: change proportions to not use magic numbers
   let dynamic_size = (window_type: ContentType): number[][] => {
     switch (window_type) {
       case ContentType.Image:
         return [
-          [264, 264],
+          IMAGE_WINDOW_PROPORTIONS,
           //Bar size
-          [10],
+          [IMAGE_WINDOW_BAR_SIZE],
         ];
 
       case ContentType.Markdown:
         return [
-          [480, 640],
+          MARKDOWN_WINDOW_PROPORTIONS,
           //Bar size
-          [6],
+          [MARKDOWN_WINDOW_BAR_SIZE],
         ];
     }
   };
@@ -86,7 +97,7 @@ function windowHandler(window: Window & typeof globalThis, key: number) {
       state.show_error_pop_up = true;
       setTimeout(() => {
         state.show_error_pop_up = false;
-      }, 3000);
+      }, ERROR_TIMEOUT);
     },
     OnChangeWindowProportion: (window_type: ContentType) => {
       let [window_proportions, appbar_proportion] = dynamic_size(window_type);

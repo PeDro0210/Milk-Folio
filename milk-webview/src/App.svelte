@@ -21,10 +21,6 @@
   $effect(() => {
     window_state.changeInnerWidth();
 
-    //The only propuse for calling this variable here, is for activating the $effect
-    //for running the  if statement down bewlo
-    let effect_activator = reactivity_startmenu_state.slide_start_menu;
-
     if (window_state.window_width > 700) {
       reactivity_startmenu_state.changeSelfAlign(AligmentTypes.start.valueOf());
     } else {
@@ -41,9 +37,7 @@
 </script>
 
 <crt-filter>
-  <!---
-  the loading screen will unload when all the elements are load
-  --->
+  <!--the loading screen will unload when all the elements are load-->
 
   {#if loading_state.checkLoadedElements()}
     <MilkLoadingScreen />
@@ -52,7 +46,6 @@
   <main>
     <!--For the content loading-->
     <Router />
-    <!--For the content loading-->
 
     <VaporwaveWorkingspace />
   </main>

@@ -1,2 +1,2 @@
-env_variables/
 *.env
+compose.yml

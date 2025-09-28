@@ -39,7 +39,7 @@ body {
   -o-background-size: cover;
   background-size: cover;
 
-  overflow: none;
+  overflow: scroll;
 
   crt-filter::before {
     content: " ";

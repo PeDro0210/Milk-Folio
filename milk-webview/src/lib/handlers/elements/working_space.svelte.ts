@@ -26,11 +26,13 @@ function workingSpaceHandler() {
     onMobileLayout: () => {
 
       let desktop = document.querySelector("#desktop") as HTMLElement;
+
       if (window_state.window_width > 700) {
         desktop.style.setProperty("--dekstop-display", "");
       }
       else {
         desktop.style.setProperty("--dekstop-display", "flex");
+
       }
 
     }

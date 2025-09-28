@@ -112,7 +112,7 @@
     padding: 5px 6px 9px;
     gap: 5px;
 
-    position: fixed;
+    position: relative;
 
     z-index: 0;
 

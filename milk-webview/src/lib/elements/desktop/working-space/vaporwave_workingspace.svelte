@@ -3,10 +3,18 @@
   import type { WorkingSpaceState } from "$states/declarations.svelte";
   import workingSpaceHandler from "$handlers/working_space.svelte";
   import VaporwaveWindow from "./components/vaporwave_window.svelte";
+  import { window_state } from "$states/global.svelte";
 
   let handler = workingSpaceHandler();
 
   let state: WorkingSpaceState = $state(handler.getState());
+
+  let window_resizing = async () => {
+    if (window_state.window_width < 700) {
+      handler.onMobileLayout();
+      return;
+    }
+  };
 
   onMount(async () => {
     handler.setLoaded;
@@ -14,6 +22,7 @@
 
   $effect(() => {
     handler.getContents();
+    window.addEventListener("resize", window_resizing);
   });
 </script>
 
@@ -39,5 +48,7 @@
     flex-direction: column;
     gap: 10px;
     align-items: center;
+    overflow-y: scroll;
+    width: 100%;
   }
 </style>

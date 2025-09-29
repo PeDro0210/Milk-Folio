@@ -110,15 +110,17 @@ function windowHandler(window: Window & typeof globalThis, key: number) {
       state.content_height = appbar_proportion.at(0) as number - CONTENT_OFFSET;
     },
 
-    /** changes the width of each window to the device width*/
-    onMobileLayout: (window_type: ContentType) => {
-      state.window_proportion_width = window_state.window_width;
+    // Won't use it for now
 
-      // in case for image window
-      if (window_type == ContentType.Image) {
-        state.window_proportion_height = IMAGE_HEIGHT_MOBILE;
-      }
-    }
+    /** changes the width of each window to the device width*/
+    //onMobileLayout: (window_type: ContentType) => {
+    //  state.window_proportion_width = window_state.window_width;
+
+    //  // in case for image window
+    //  if (window_type == ContentType.Image) {
+    //    state.window_proportion_height = IMAGE_HEIGHT_MOBILE;
+    //  }
+    //}
   };
 }
 

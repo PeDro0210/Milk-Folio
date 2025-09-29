@@ -10,10 +10,10 @@ function windowHandler(window: Window & typeof globalThis, key: number) {
 
     // I got kinda stressed for this 2 to be so close
     x_position: window.localStorage.getItem("positionX" + key) ??
-      (getRandomBetween(-700, 700)).toString(),
+      (getRandomBetween(-window.outerWidth / 4, window.outerWidth / 4)).toString(),
 
     y_position: window.localStorage.getItem("positionY" + key) ??
-      (getRandomBetween(-400, 100)).toString(),
+      (getRandomBetween(-window.outerHeight / 4, window.outerHeight / 4)).toString(),
 
     window_proportion_height: 0,
     window_proportion_width: 0,

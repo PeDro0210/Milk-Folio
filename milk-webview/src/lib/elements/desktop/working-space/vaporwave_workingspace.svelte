@@ -10,10 +10,7 @@
   let state: WorkingSpaceState = $state(handler.getState());
 
   let window_resizing = async () => {
-    if (window_state.window_width < 700) {
-      handler.onMobileLayout();
-      return;
-    }
+    handler.onMobileLayout();
   };
 
   onMount(async () => {
@@ -41,3 +38,14 @@
     />
   {/each}
 </div>
+
+<style lang="scss">
+  #desktop {
+    display: var(--dekstop-display);
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    overflow-y: hidden;
+    width: 100%;
+  }
+</style>

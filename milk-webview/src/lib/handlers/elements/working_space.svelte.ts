@@ -25,14 +25,14 @@ function workingSpaceHandler() {
     },
     onMobileLayout: () => {
 
-      let desktop = document.querySelector("#desktop") as HTMLElement;
+      // for simplicity, let's do it in here, cause at the end the workingSpace is the one getting manipulated
+      let body = document.querySelector("body") as HTMLElement;
 
-      if (window_state.window_width > 700) {
-        desktop.style.setProperty("--dekstop-display", "");
+      if (window_state.window_width < 700) {
+        body.style.overflowY = "scroll";
       }
       else {
-        desktop.style.setProperty("--dekstop-display", "flex");
-
+        body.style.overflowY = "hidden";
       }
 
     }

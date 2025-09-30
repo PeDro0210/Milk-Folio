@@ -44,7 +44,7 @@ jobs:
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
           source: "images.tar,compose.yml,.env"
-          target: "~/milk-project"
+          target: "~/Milk-Folio"
 
       - name: Deploy on VPS
         uses: appleboy/ssh-action@v1.0.3

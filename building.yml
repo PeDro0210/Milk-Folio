@@ -1,3 +1,4 @@
+# Compose for staging and building images
 services:
   backend:
     build: ./milk-backend

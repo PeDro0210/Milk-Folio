@@ -1,66 +1,71 @@
-name: deploy-to-vps
+name: build-and-deploy-no-registry
 
 on:
   push:
-    branches: [ "master" ]
+    branches: ["master"]
+
+env:
+  IMAGE_TAG: ${{ github.sha }}
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
-    env:
-      BACKEND_PORT: ${{ secrets.BACKEND_PORT }}
-      WEBVIEW_PORT: ${{ secrets.WEBVIEW_PORT }}
-      VITE_BACKEND_URL: ${{ secrets.VITE_BACKEND_URL }}
-      BACKEND_HOST: ${{ secrets.BACKEND_HOST }}
-      WEBVIEW_URL: ${{ secrets.WEBVIEW_URL }}
-
     steps:
-      - name: Checkout repo
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Docker
+      - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Setting up keys
+      - name: Build images (tagged)
         run: |
-          mkdir -p ~/.ssh/ && touch ~/.ssh/known_hosts
-          ssh-keyscan ${{ secrets.vps_host }} >> ~/.ssh/known_hosts
+          # build images and tag them with IMAGE_TAG
+          docker build -t milk-backend:${IMAGE_TAG} ./milk-backend
+          docker build -t milk-webview:${IMAGE_TAG} ./milk-webview
 
-          eval $(ssh-agent)
-          ssh-add - <<< "${{ secrets.VPS_SSH_KEY }}"
-
-          echo "${{ secrets.VPS_SSH_KEY }}" > ${HOME}/.ssh/milk_key.pem
-          chmod 400 ${HOME}/.ssh/milk_key.pem
-
-      - name: create .env file
+      - name: Create .env for remote
         run: |
-          echo "BACKEND_PORT=${BACKEND_PORT}" >> .env
-          echo "WEBVIEW_PORT=${WEBVIEW_PORT}" >> .env
-          echo "VITE_BACKEND_URL=${VITE_BACKEND_URL}" >> .env
-          echo "BACKEND_HOST=${BACKEND_HOST}" >> .env
-          echo "WEBVIEW_URL=${WEBVIEW_URL}" >> .env
+          cat > .env <<EOF
+          BACKEND_PORT=${{ secrets.BACKEND_PORT }}
+          WEBVIEW_PORT=${{ secrets.WEBVIEW_PORT }}
+          VITE_BACKEND_URL=${{ secrets.VITE_BACKEND_URL }}
+          BACKEND_HOST=${{ secrets.BACKEND_HOST }}
+          WEBVIEW_URL=${{ secrets.WEBVIEW_URL }}
+          IMAGE_TAG=${IMAGE_TAG}
+          EOF
 
-      - name: Build Docker images
-        run: docker compose build
-
-      - name: Save images as tarballs
+      - name: Prepare SSH key
         run: |
-          docker compose config --services | xargs -I{} docker compose images -q {} | xargs -r docker save -o images.tar
+          echo "$SSH_KEY" > /tmp/deploy_key
+          chmod 600 /tmp/deploy_key
+        env:
+          SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
 
-      - name: Install rsync and Transfer files using rsync
+      - name: Stream images to VPS (gzip -> ssh -> docker load)
         run: |
-          rsync -avzP -e "ssh -i ${HOME}/.ssh/milk_key.pem -vv -o ServerAliveInterval=60 -o ServerAliveCountMax=5" images.tar compose.yml .env ${{ secrets.VPS_USER }}@${{ secrets.vps_host }}:~/Milk-Folio/
+          # The ssh options:
+          # -C enables compression on the SSH transport (helps on CPU-rich, bandwidth-limited links)
+          # -o ServerAliveInterval keeps the connection alive
+          # -o StrictHostKeyChecking=no only for CI convenience (consider adding known_hosts in production)
+          docker save milk-backend:${IMAGE_TAG} milk-webview:${IMAGE_TAG} \
+            | gzip -c \
+            | ssh -i /tmp/deploy_key -o Compression=yes -o ServerAliveInterval=60 -o ServerAliveCountMax=5 -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} \
+              'mkdir -p ~/Milk-Folio && gunzip -c | docker load'
 
+      - name: Upload docker-compose.yml and .env (small files)
+        run: |
+          scp -i /tmp/deploy_key -o Compression=yes -o StrictHostKeyChecking=no docker-compose.yml .env ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:~/Milk-Folio/
 
-      - name: Deploy on VPS
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USER }}
-          key: ${{ secrets.VPS_SSH_KEY }}
-          script: |
-            cd Milk-Folio/
-            docker load -i images.tar
-            docker-compose down
-            docker-compose up --build -d
+      - name: Run compose on VPS
+        run: |
+          ssh -i /tmp/deploy_key -o Compression=yes -o ServerAliveInterval=60 -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} <<'EOF'
+            cd ~/Milk-Folio
+            # optionally prune old containers/images you don't need:
+            # docker image prune -f
+            docker compose down --remove-orphans
+            docker compose up -d
+            # optional: show recent containers
+            docker ps --filter "name=milk" || true
+          EOF
+

@@ -35,24 +35,23 @@ jobs:
           IMAGE_TAG=${IMAGE_TAG}
           EOF
 
-      - name: Prepare SSH key
-        run: |
-          echo "$SSH_KEY" > /tmp/deploy_key
-          chmod 600 /tmp/deploy_key
-        env:
-          SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
 
-      - name: Stream images to VPS (gzip -> ssh -> docker load) — sh fallback
+      - name: Stream images to VPS (write remote gz then load)
         run: |
+          # write the SSH key
+          echo "${{ secrets.VPS_SSH_KEY }}" > ~/deploy_key
+          chmod 600 ~/deploy_key
+
+
+          # stream compressed images to a remote file (cat will consume stdin -> no shell parsing)
           docker save milk-backend:${IMAGE_TAG} milk-webview:${IMAGE_TAG} \
             | gzip -c \
-            | ssh -i /tmp/deploy_key \
-                 -o Compression=yes \
-                 -o ServerAliveInterval=60 \
-                 -o ServerAliveCountMax=5 \
-                 -o StrictHostKeyChecking=no \
-                 ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} \
-                 'sh -lc "mkdir -p ~/Milk-Folio && gunzip -c | docker load"'
+            | ssh -i ~/deploy_key -o Compression=yes -o ServerAliveInterval=60 -o ServerAliveCountMax=5 -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} \
+              'cat > ~/Milk-Folio/images.tar.gz'
+
+          # load on remote, then remove the archive
+          ssh -i ~/deploy_key -o Compression=yes -o ServerAliveInterval=60 -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} \
+            'cd ~/Milk-Folio && gunzip -c images.tar.gz | docker load && rm -f images.tar.gz'
 
       - name: Upload docker-compose.yml and .env (small files)
         run: |

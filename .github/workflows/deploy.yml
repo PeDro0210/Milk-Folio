@@ -40,11 +40,11 @@ jobs:
       - name: Install rsync and Transfer files using rsync
         run: |
           mkdir ${HOME}/.ssh
-          echo "${{ secrets.VPS_SSH_KEY }}" > ${HOME}/.ssh/id_rsa
-          chmod 600 ${HOME}/.ssh/id_rsa
+          echo "${{ secrets.VPS_SSH_KEY }}" > ${HOME}/.ssh/milk_key.pem
+          chmod 400 ${HOME}/.ssh/milk_key.pem
 
           # Rsync command to transfer files
-          rsync -avz -e "ssh -i ${HOME}/.ssh/id_rsa" images.tar compose.yml .env ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:~/Milk-Folio/
+          rsync -avz -e "ssh -i ${HOME}/.ssh/milk_key.pem" images.tar compose.yml .env ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:~/Milk-Folio/
 
 
       - name: Deploy on VPS

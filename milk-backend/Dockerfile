@@ -18,7 +18,7 @@ cargo build --locked --release
 cp ./target/release/$APP_NAME /bin/server
 EOF
 
-FROM ubuntu:lateste AS final
+FROM ubuntu:latest AS final
 
 COPY resources/ /resources/
 COPY --from=build /bin/server /bin/

@@ -18,10 +18,8 @@ cargo build --locked --release
 cp ./target/release/$APP_NAME /bin/server
 EOF
 
-FROM debian:bullseye-slim AS final
+FROM ubuntu:bullseye-slim AS final
 
-RUN apt-get update
-RUN install libc6
 COPY resources/ /resources/
 COPY --from=build /bin/server /bin/
 

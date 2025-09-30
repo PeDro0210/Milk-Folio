@@ -44,7 +44,7 @@ jobs:
           chmod 400 ${HOME}/.ssh/milk_key.pem
 
           # Rsync command to transfer files
-          rsync -avz -e "ssh -i ${HOME}/.ssh/milk_key.pem" images.tar compose.yml .env ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:~/Milk-Folio/
+          rsync -avz -e --progress --stats "ssh -i ${HOME}/.ssh/milk_key.pem" images.tar compose.yml .env ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:~/Milk-Folio/
 
 
       - name: Deploy on VPS

@@ -1,0 +1,59 @@
+name: deploy-to-vps
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    env:
+      BACKEND_PORT: ${{ secrets.BACKEND_PORT }}
+      WEBVIEW_PORT: ${{ secrets.WEBVIEW_PORT }}
+      VITE_BACKEND_URL: ${{ secrets.VITE_BACKEND_URL }}
+      BACKEND_HOST: ${{ secrets.BACKEND_HOST }}
+      WEBVIEW_URL: ${{ secrets.WEBVIEW_URL }}
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v3
+
+      - name: create .env file
+        run: |
+          echo "BACKEND_PORT=${BACKEND_PORT}" >> .env
+          echo "WEBVIEW_PORT=${WEBVIEW_PORT}" >> .env
+          echo "VITE_BACKEND_URL=${VITE_BACKEND_URL}" >> .env
+          echo "BACKEND_HOST=${BACKEND_HOST}" >> .env
+          echo "WEBVIEW_URL=${WEBVIEW_URL}" >> .env
+
+      - name: Build Docker images
+        run: docker-compose build
+
+      - name: Save images as tarballs
+        run: |
+          docker save $(docker-compose config --services | xargs -I{} docker-compose images -q {}) -o images.tar
+
+      - name: Copy images and files to VPS
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          source: "images.tar,compose.yml,.env"
+          target: "~/milk-project"
+
+      - name: Deploy on VPS
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            cd Milk-Folio/
+            docker load -i images.tar
+            docker-compose down
+            docker-compose up --build -d

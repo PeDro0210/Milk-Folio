@@ -30,13 +30,8 @@ jobs:
           echo "BACKEND_HOST=${BACKEND_HOST}" >> .env
           echo "WEBVIEW_URL=${WEBVIEW_URL}" >> .env
 
-      - name: install docker binaries
-        run: |
-          sudo apt-get update
-          sudo apt-get install docker docker-compose
-
       - name: Build Docker images
-        run: docker-compose build
+        run: docker compose build
 
       - name: Save images as tarballs
         run: |

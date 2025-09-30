@@ -35,7 +35,7 @@ jobs:
 
       - name: Save images as tarballs
         run: |
-          docker save $(docker compose config --services | xargs -I{} docker compose images -q {}) -o images.tar
+          docker compose config --services | xargs -I{} docker compose images -q {} | xargs -r docker save -o images.tar
 
       - name: Copy images and files to VPS
         uses: appleboy/scp-action@v0.1.7

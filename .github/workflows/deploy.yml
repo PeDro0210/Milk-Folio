@@ -44,14 +44,16 @@ jobs:
 
       - name: Stream images to VPS (gzip -> ssh -> docker load)
         run: |
-          # The ssh options:
-          # -C enables compression on the SSH transport (helps on CPU-rich, bandwidth-limited links)
-          # -o ServerAliveInterval keeps the connection alive
-          # -o StrictHostKeyChecking=no only for CI convenience (consider adding known_hosts in production)
           docker save milk-backend:${IMAGE_TAG} milk-webview:${IMAGE_TAG} \
             | gzip -c \
-            | ssh -i /tmp/deploy_key -o Compression=yes -o ServerAliveInterval=60 -o ServerAliveCountMax=5 -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} \
-              'mkdir -p ~/Milk-Folio && gunzip -c | docker load'
+            | ssh -i /tmp/deploy_key \
+                 -o Compression=yes \
+                 -o ServerAliveInterval=60 \
+                 -o ServerAliveCountMax=5 \
+                 -o StrictHostKeyChecking=no \
+                 ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} \
+                 'bash -lc "mkdir -p ~/Milk-Folio && gunzip -c | docker load"'
+
 
       - name: Upload docker-compose.yml and .env (small files)
         run: |

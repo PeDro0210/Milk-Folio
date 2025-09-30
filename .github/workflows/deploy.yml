@@ -33,7 +33,7 @@ jobs:
       - name: install docker binaries
         run: |
           sudo apt-get update
-          sudo apt-get docker docker-compose
+          sudo apt-get install docker docker-compose
 
       - name: Build Docker images
         run: docker-compose build

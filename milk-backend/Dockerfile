@@ -1,4 +1,4 @@
-ARG RUST_VERSION=1.84.1
+ARG RUST_VERSION=1.84.4
 ARG APP_NAME=milk-backend
 FROM rust:${RUST_VERSION}-slim-bullseye AS build
 ARG APP_NAME

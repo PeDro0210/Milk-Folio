@@ -33,6 +33,9 @@ jobs:
       - name: build images
         run: |
           docker-compose -f building.yml build
+
+      - name: save image
+        run: |
           docker save milk-folio_backend:latest milk-folio_webview:latest > ~/images.tar
 
       - name: Copy dist to VPS

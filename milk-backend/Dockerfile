@@ -20,8 +20,8 @@ EOF
 
 FROM debian:bullseye-slim AS final
 
-RUN sudo apt-get update
-RUN sudo install libc6
+RUN apt-get update
+RUN install libc6
 COPY resources/ /resources/
 COPY --from=build /bin/server /bin/
 

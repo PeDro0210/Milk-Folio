@@ -48,6 +48,9 @@ jobs:
           echo "${{ secrets.VPS_SSH_KEY }}" > ${HOME}/.ssh/milk_key.pem
           chmod 400 ${HOME}/.ssh/milk_key.pem
 
+      - name: Ssetting up timeouts
+        run: |
+          echo "Host *\ServerAliveInterval 30\ServerAliveCountMax 6" > ~/.ssh/config
 
       - name: Install rsync and Transfer files using rsync
         run: |

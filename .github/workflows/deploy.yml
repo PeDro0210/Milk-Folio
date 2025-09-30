@@ -42,7 +42,7 @@ jobs:
         env:
           SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
 
-      - name: Stream images to VPS (gzip -> ssh -> docker load)
+      - name: Stream images to VPS (gzip -> ssh -> docker load) — sh fallback
         run: |
           docker save milk-backend:${IMAGE_TAG} milk-webview:${IMAGE_TAG} \
             | gzip -c \
@@ -52,8 +52,7 @@ jobs:
                  -o ServerAliveCountMax=5 \
                  -o StrictHostKeyChecking=no \
                  ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} \
-                 'bash -lc "mkdir -p ~/Milk-Folio && gunzip -c | docker load"'
-
+                 'sh -lc "mkdir -p ~/Milk-Folio && gunzip -c | docker load"'
 
       - name: Upload docker-compose.yml and .env (small files)
         run: |

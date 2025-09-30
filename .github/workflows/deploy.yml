@@ -52,7 +52,7 @@ jobs:
       - name: Install rsync and Transfer files using rsync
         run: |
           # Rsync command to transfer files
-          rsync -avz -e "ssh -i ${HOME}/.ssh/milk_key.pem" images.tar compose.yml .env ${{ secrets.VPS_USER }}@${{ secrets.vps_host }}:~/Milk-Folio/
+          rsync -avzP -e "ssh -i ${HOME}/.ssh/milk_key.pem" images.tar compose.yml .env ${{ secrets.VPS_USER }}@${{ secrets.vps_host }}:~/Milk-Folio/
 
 
       - name: Deploy on VPS

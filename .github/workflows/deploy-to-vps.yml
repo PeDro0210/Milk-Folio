@@ -33,7 +33,7 @@ jobs:
       - name: build images
         run: |
           docker-compose -f building.yml build
-          docker save milk-folio_backend:latest milk-folio_webview:latest > images.tar
+          docker save milk-folio_backend:latest milk-folio_webview:latest > ~/images.tar
 
       - name: Copy dist to VPS
         uses: appleboy/scp-action@master

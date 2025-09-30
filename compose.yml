@@ -1,0 +1,17 @@
+services:
+  backend:
+    build: ./milk-backend
+    ports:
+      - "${BACKEND_PORT}:${BACKEND_PORT}"
+    env_file:
+      - .env
+  webview:
+    build:       
+      context: ./milk-webview
+      args:
+        VITE_BACKEND_URL: "${VITE_BACKEND_URL}"
+    ports:
+      - "${WEBVIEW_PORT}:${WEBVIEW_PORT}"
+    depends_on:
+      - backend
+

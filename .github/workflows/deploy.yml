@@ -37,7 +37,7 @@ jobs:
         run: |
           docker compose config --services | xargs -I{} docker compose images -q {} | xargs -r docker save -o images.tar
 
-      - name: Install rsync and Transfer files using rsync
+      - name: Setting up keys
         run: |
           mkdir -p ~/.ssh/ && touch ~/.ssh/known_hosts
           ssh-keyscan ${{ secrets.vps_host }} >> ~/.ssh/known_hosts
@@ -48,6 +48,9 @@ jobs:
           echo "${{ secrets.VPS_SSH_KEY }}" > ${HOME}/.ssh/milk_key.pem
           chmod 400 ${HOME}/.ssh/milk_key.pem
 
+
+      - name: Install rsync and Transfer files using rsync
+        run: |
           # Rsync command to transfer files
           rsync -avz -e "ssh -i ${HOME}/.ssh/milk_key.pem" images.tar compose.yml .env ${{ secrets.VPS_USER }}@${{ secrets.vps_host }}:~/Milk-Folio/
 

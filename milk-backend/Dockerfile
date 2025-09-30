@@ -18,7 +18,7 @@ cargo build --locked --release
 cp ./target/release/$APP_NAME /bin/server
 EOF
 
-FROM ubuntu:bullseye-slim AS final
+FROM ubuntu:lateste AS final
 
 COPY resources/ /resources/
 COPY --from=build /bin/server /bin/

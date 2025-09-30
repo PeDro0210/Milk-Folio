@@ -5,26 +5,19 @@ on:
   push:
     branches: ["master"]
 
-env:
-  IMAGE_TAG: ${{ github.sha }}
 
 jobs:
   build-and-deploy-tarball:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Checkout
+      - name: checkout
         uses: actions/checkout@v4
 
       - name: setup for docker building tools
         uses: docker/setup-buildx-action@v3
 
-      - name: build images
-        run: |
-          docker build -t milk-backend:${IMAGE_TAG} ./milk-backend
-          docker build -t milk-webview:${IMAGE_TAG} ./milk-webview
-
-      - name: Create .env for remote
+      - name: create .env for remote
         run: |
           cat > .env <<EOF
           BACKEND_PORT=${{ secrets.BACKEND_PORT }}
@@ -32,5 +25,9 @@ jobs:
           VITE_BACKEND_URL=${{ secrets.VITE_BACKEND_URL }}
           BACKEND_HOST=${{ secrets.BACKEND_HOST }}
           WEBVIEW_URL=${{ secrets.WEBVIEW_URL }}
-          IMAGE_TAG=${IMAGE_TAG}
           EOF
+
+      - name: build images
+        run: |
+          docker-compose -f building.yml build
+          docker save milk-folio_backend:latest milk-folio_webview:latest > images.tar

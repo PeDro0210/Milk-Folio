@@ -15,6 +15,3 @@ services:
     depends_on:
       - backend
 
-networks:
-  mynetwork:
-    driver: bridge

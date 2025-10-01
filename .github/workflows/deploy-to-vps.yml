@@ -36,8 +36,7 @@ jobs:
 
       - name: save image
         run: |
-          mkdir images
-          docker save milk-folio_backend:latest milk-folio_webview:latest > images/images.tar
+          docker save milk-folio_backend:latest milk-folio_webview:latest > images.tar
       
       - name: Copy dist to VPS
         uses: appleboy/scp-action@master
@@ -45,6 +44,6 @@ jobs:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
-          source: "./images/*"
-          target: "$HOME"
+          source: "./*"
+          target: "/"
           debug: true 

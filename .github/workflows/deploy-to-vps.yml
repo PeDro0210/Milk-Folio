@@ -22,7 +22,7 @@ jobs:
         with:
           RSYNC_OPTIONS: -avzr --delete --exclude node_modules --exclude '.git*'
           RSYNC_TARGET: /home/ec2-user/
-          RSYNC_SOURCE: .
+          RSYNC_SOURCE: ./
         env:
           SSH_PRIVATE_KEY: ${{secrets.VPS_SSH_KEY}}
           SSH_USERNAME: ${{secrets.VPS_USER}}

@@ -17,8 +17,16 @@ jobs:
       - name: setup for docker building tools
         uses: docker/setup-buildx-action@v3
 
-      - name: Check vps fetching
-        run: curl -v ${{ secrets.VPS_HOST }}:80
+      - name: uploading all repo
+        uses: trendyminds/github-actions-rsync@master
+        with:
+          RSYNC_OPTIONS: -avzr --delete --exclude node_modules --exclude '.git*'
+          RSYNC_TARGET: /home/ec2-user/
+          RSYNC_SOURCE: .
+        env:
+          SSH_PRIVATE_KEY: ${{secrets.VPS_SSH_KEY}}
+          SSH_USERNAME: ${{secrets.VPS_USER}}
+          SSH_HOSTNAME: ${{secrets.VPS_HOST}}
 
       - name: install utilities
         run: |
@@ -41,13 +49,3 @@ jobs:
         run: |
           mkdir images
           docker save milk-folio_backend:latest milk-folio_webview:latest > ./images/images.tar
-   
-      # this for the deployment of the images
-      - name: Install SSH Key
-        uses: shimataro/ssh-key-action@v2
-        with:
-          key: ${{ secrets.VPS_SSH_KEY }}
-          known_hosts: 'PlaceHolder'
-      
-      - name: Deploy with rsync
-        run: rsync -avhPW  --progress ./images/ ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/home/ec2-user/

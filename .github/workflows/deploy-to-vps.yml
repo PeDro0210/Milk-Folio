@@ -41,4 +41,4 @@ jobs:
       
      
       - name: Copy repository to server with rsync
-        run: rsync -avz --exclude '.git' --chown=github:www-data --chmod=Dg=rwx,Fg=rwx ./images/images.tar ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/home/ec2-user/
+        run: rsync -avz --exclude '.git' "ssh -i ${{ secrets.VPS_SSH_KEY }}" --chown=github:www-data --chmod=Dg=rwx,Fg=rwx ./images/images.tar ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/home/ec2-user/

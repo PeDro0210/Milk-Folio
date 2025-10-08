@@ -18,7 +18,7 @@ jobs:
         uses: docker/setup-buildx-action@v3
 
       - name: Deploy with rsync
-        run: rsync -V
+        run: rsync -avz . ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/ec2-user/
 
       - name: install utilities
         run: |
@@ -51,3 +51,5 @@ jobs:
       - name: Adding Known Hosts
         run: ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
 
+      - name: Deploy with rsync
+        run: rsync -avz .images/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/ec2-user/

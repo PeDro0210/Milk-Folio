@@ -49,5 +49,5 @@ jobs:
           key: ${{ secrets.VPS_SSH_KEY }}
           known_hosts: 'PlaceHolder'
       
-            - name: Deploy with rsync
+      - name: Deploy with rsync
         run: rsync -avhPW  --progress ./images/ ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/home/ec2-user/

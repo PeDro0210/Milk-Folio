@@ -38,7 +38,13 @@ jobs:
         run: |
           mkdir images
           docker save milk-folio_backend:latest milk-folio_webview:latest > ./images/images.tar
-      
-     
-      - name: Copy repository to server with rsync
-        run: rsync -avz --exclude '.git' "ssh -i ${{ secrets.VPS_SSH_KEY }}" --chown=github:www-data --chmod=Dg=rwx,Fg=rwx ./images/images.tar ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/home/ec2-user/
+      - name: rsync deployments
+        uses: burnett01/rsync-deployments@7.1.0
+        with:
+          switches: -avzr --delete
+          path: images/
+          remote_path: /home/ec2-user/
+          remote_host: ${{ secrets.VPS_HOST }}
+          remote_user: ${{ secrets.VPS_USER }}
+          remote_key: ${{ secrets.VPS_SSH_KEY }}
+

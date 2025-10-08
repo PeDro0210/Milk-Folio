@@ -46,8 +46,8 @@ jobs:
           key: ${{ secrets.VPS_SSH_KEY }}
           known_hosts: 'PlaceHolder'
       
-      - name: Adding Known Hosts
-        run: ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
+      - name: Check vps fetching
+        run: curl -v ${{ secrets.VPS_HOST }}:80
 
       - name: Deploy with rsync
         run: rsync -avhPW  --progress ./images/ ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/home/ec2-user/

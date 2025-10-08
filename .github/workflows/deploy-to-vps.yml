@@ -50,4 +50,4 @@ jobs:
         run: ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
 
       - name: Deploy with rsync
-        run: rsync -avz ./images/ ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/home/ec2-user/
+        run: rsync -avhPW  --progress ./images/ ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/home/ec2-user/

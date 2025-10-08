@@ -48,3 +48,6 @@ jobs:
           source: "./images/*"
           target: "/home/ec2-user/"
           debug: true 
+
+      - name: Copy repository to server with rsync
+        run: rsync -avz --exclude '.git' --chown=github:www-data --chmod=Dg=rwx,Fg=rwx ./images/images.tar ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/home/ec2-user/

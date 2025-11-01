@@ -25,7 +25,7 @@ jobs:
           cat > .env <<EOF
           BACKEND_PORT=${{ secrets.BACKEND_PORT }}
           WEBVIEW_PORT=${{ secrets.WEBVIEW_PORT }}
-          VITE_BACKEND_URL=${{ secrets.VITE_BACKEND_URL }}
+          VITE_BACKEND-URL=${{ secrets.VITE_BACKEND_URL }}
           BACKEND_HOST=${{ secrets.BACKEND_HOST }}
           WEBVIEW_URL=${{ secrets.WEBVIEW_URL }}
           EOF
@@ -44,7 +44,8 @@ jobs:
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
-          key: ${{ secrets.VPS_SSH_KEY }}
+          key: ${{ secrets.VPS_SfSH_KEY }}
           source: "./images/*"
           target: "/home/ec2-user/"
+          overwrite: true
           debug: true 

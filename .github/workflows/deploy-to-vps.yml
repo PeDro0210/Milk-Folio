@@ -51,7 +51,7 @@ jobs:
           debug: true 
       - name: run compose
         run: |
-          docker load < ~/milk-folio/images/images.tar
+          docker load < ~/milk-folio/images.tar
           docker-compose -f deploy.yml down
           docker-compose -f deploy.yml up --build
 

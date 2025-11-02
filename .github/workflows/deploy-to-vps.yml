@@ -60,7 +60,7 @@ jobs:
         run: |
           ssh -i ~/.keys/vps_key.pem -o StrictHostKeyChecking=no  ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
             cd ~/milk-folio
-            docker load < images.tar
+            docker load < images/images.tar
             docker-compose -f deploy.yml down
             docker-compose -f deploy.yml up --build
           EOF

@@ -39,7 +39,7 @@ jobs:
           mkdir images
           docker save milk-folio_backend:latest milk-folio_webview:latest > ./images/images.tar
       
-      - name: Copy tars to VPS
+      - name: copy tars to VPS
         uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.VPS_HOST }}
@@ -49,10 +49,19 @@ jobs:
           target: "/home/${{ secrets.VPS_USER }}/milk-folio/"
           overwrite: true
           debug: true 
+
+      - name: setting up key for remote shell from runner
+        run: |
+             mkdir ~/.keys
+             touch ~/.keys/vps_key.pem
+             echo "${{secrets.VPS_SSH_KEY}}" >> ~/.keys/vps_key.pem &&  chmod 400 ~/.keys/vps_key.pem 
+             cat ~/.keys/vps_key.pem
       - name: run compose
         run: |
-          docker load < ~/milk-folio/images.tar
-          docker-compose -f deploy.yml down
-          docker-compose -f deploy.yml up --build
-
+          ssh -i ~/.keys/vps_key.pem -o StrictHostKeyChecking=no  ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
+            cd ~/milk-folio
+            docker load < images.tar
+            docker-compose -f deploy.yml down
+            docker-compose -f deploy.yml up --build
+          EOF
 

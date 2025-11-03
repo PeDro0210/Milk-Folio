@@ -25,7 +25,7 @@ jobs:
           cat > .env <<EOF
           BACKEND_PORT=${{ secrets.BACKEND_PORT }}
           WEBVIEW_PORT=${{ secrets.WEBVIEW_PORT }}
-          VITE_BACKEND-URL=${{ secrets.VITE_BACKEND_URL }}
+          VITE_BACKEND_URL=${{ secrets.VITE_BACKEND_URL }}
           BACKEND_HOST=${{ secrets.BACKEND_HOST }}
           WEBVIEW_URL=${{ secrets.WEBVIEW_URL }}
           EOF
@@ -64,7 +64,7 @@ jobs:
 
             echo "BACKEND_PORT=${{ secrets.BACKEND_PORT }}
           WEBVIEW_PORT=${{ secrets.WEBVIEW_PORT }}
-          VITE_BACKEND-URL=${{ secrets.VITE_BACKEND_URL }}
+          VITE_BACKEND_URL=${{ secrets.VITE_BACKEND_URL }}
           BACKEND_HOST=${{ secrets.BACKEND_HOST }}
           WEBVIEW_URL=${{ secrets.WEBVIEW_URL }}" | cat > .env
 

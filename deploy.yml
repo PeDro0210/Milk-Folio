@@ -12,7 +12,7 @@ services:
     depends_on:
       - backend
     volumes:
-     - public:/usr/share/nginx/html
+     - public:/usr/share/nginx/html/assets
 
 volumes:
   public:

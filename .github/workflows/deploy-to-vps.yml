@@ -45,7 +45,7 @@ jobs:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
-          source: "./images/*, deploy.yml"
+          source: "./images/*, deploy.yml, ./milk-webview/public/milk_icon.png"
           target: "/home/${{ secrets.VPS_USER }}/milk-folio/"
           overwrite: true
           debug: true 
@@ -70,10 +70,13 @@ jobs:
 
           EOF
 
-      - name: run compose
+      - name: copying needed files and run compose
         run: |
           ssh -i ~/.keys/vps_key.pem -o StrictHostKeyChecking=no  ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
             cd ~/milk-folio
+
+            mv ./milk-webview/public/milk_icon.png ./milk_icon.png
+
             sudo docker load < images/images.tar
             sudo docker-compose -f deploy.yml down
             sudo docker-compose -f deploy.yml up --build -d

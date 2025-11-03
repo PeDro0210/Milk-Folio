@@ -75,7 +75,7 @@ jobs:
           ssh -i ~/.keys/vps_key.pem -o StrictHostKeyChecking=no  ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
             cd ~/milk-folio
 
-            mv ./milk-webview/public/milk_icon.png ./milk_icon.png
+            mv ./milk-webview/public/milk_icon.png ./public/milk_icon.png
 
             sudo docker load < images/images.tar
             sudo docker-compose -f deploy.yml down

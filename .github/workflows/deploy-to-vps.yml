@@ -66,8 +66,7 @@ jobs:
           WEBVIEW_PORT=${{ secrets.WEBVIEW_PORT }}
           VITE_BACKEND-URL=${{ secrets.VITE_BACKEND_URL }}
           BACKEND_HOST=${{ secrets.BACKEND_HOST }}
-          WEBVIEW_URL=${{ secrets.WEBVIEW_URL }}
-" | cat > .env
+          WEBVIEW_URL=${{ secrets.WEBVIEW_URL }}" | cat > .env
 
           EOF
 
@@ -77,6 +76,6 @@ jobs:
             cd ~/milk-folio
             sudo docker load < images/images.tar
             sudo docker-compose -f deploy.yml down
-            sudo docker-compose -f deploy.yml up --build
+            sudo docker-compose -f deploy.yml up --build -d
           EOF
 

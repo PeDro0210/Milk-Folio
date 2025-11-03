@@ -1,12 +1,12 @@
 services:
   backend:
-    image: localhost/milk-folio_backend
+    image: localhost/milk-folio_backend:latest
     ports:
       - "${BACKEND_PORT}:${BACKEND_PORT}"
     env_file:
       - .env
   webview:
-    image: localhost/milk-folio_webview
+    image: localhost/milk-folio_webview:latest
     ports:
       - "${WEBVIEW_PORT}:5173"
     depends_on:

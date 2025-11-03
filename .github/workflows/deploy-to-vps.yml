@@ -56,6 +56,22 @@ jobs:
              touch ~/.keys/vps_key.pem
              echo "${{secrets.VPS_SSH_KEY}}" >> ~/.keys/vps_key.pem &&  chmod 400 ~/.keys/vps_key.pem 
              cat ~/.keys/vps_key.pem
+
+      - name: setting up .env on 
+        run: |
+          ssh -i ~/.keys/vps_key.pem -o StrictHostKeyChecking=no  ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
+            cd ~/milk-folio
+
+            cat > .env <<EOF
+            BACKEND_PORT=${{ secrets.BACKEND_PORT }}
+            WEBVIEW_PORT=${{ secrets.WEBVIEW_PORT }}
+            VITE_BACKEND-URL=${{ secrets.VITE_BACKEND_URL }}
+            BACKEND_HOST=${{ secrets.BACKEND_HOST }}
+            WEBVIEW_URL=${{ secrets.WEBVIEW_URL }}
+            EOF
+
+          EOF
+
       - name: run compose
         run: |
           ssh -i ~/.keys/vps_key.pem -o StrictHostKeyChecking=no  ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'

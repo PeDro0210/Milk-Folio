@@ -23,6 +23,6 @@ FROM ubuntu:latest AS final
 COPY resources/ /resources/
 COPY --from=build /bin/server /bin/
 
-EXPOSE 5924
+EXPOSE 5050
 
 CMD ["/bin/server"]

@@ -63,7 +63,7 @@ jobs:
             cd ~/milk-folio
 
             echo "BACKEND_PORT=${{ secrets.BACKEND_PORT }}
-            WEBVIEW_PORT=${{ secrets.WEBVIEW_PORT }}" | cat > .env
+          WEBVIEW_PORT=${{ secrets.WEBVIEW_PORT }}" | cat > .env
 
           EOF
 

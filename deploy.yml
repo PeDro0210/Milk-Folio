@@ -11,4 +11,6 @@ services:
       - "${WEBVIEW_PORT}:5173"
     depends_on:
       - backend
+    volumes:
+     - public:/usr/share/nginx/html
 

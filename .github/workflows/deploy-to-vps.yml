@@ -77,6 +77,8 @@ jobs:
 
             mv ./milk-webview/public/milk_icon.png ./public/milk_icon.png
 
+            rm ./milk-webview/public/milk_icon.png
+
             sudo docker load < images/images.tar
             sudo docker-compose -f deploy.yml down
             sudo docker-compose -f deploy.yml up --build -d

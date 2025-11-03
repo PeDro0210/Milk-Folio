@@ -62,8 +62,8 @@ jobs:
           ssh -i ~/.keys/vps_key.pem -o StrictHostKeyChecking=no  ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
             cd ~/milk-folio
 
-            echo "BACKEND_PORT=${{ secrets.BACKEND_PORT }}\n
-                  WEBVIEW_PORT=${{ secrets.WEBVIEW_PORT }}" | cat > .env
+            echo "BACKEND_PORT=${{ secrets.BACKEND_PORT }}
+            WEBVIEW_PORT=${{ secrets.WEBVIEW_PORT }}" | cat > .env
 
           EOF
 

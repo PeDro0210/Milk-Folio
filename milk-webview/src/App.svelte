@@ -52,13 +52,26 @@
     <!--For the content loading-->
     <Router />
 
-    <VaporwaveWorkingspace />
+    {#if window_state.window_width > 700}
+      <VaporwaveWorkingspace />
+    {/if}
   </main>
 
   <hud>
     {#if window_state.window_width < 700}
       <VaporwaveAppbar />
-      <VaporwaveStartmenu />
+
+      <!-- i'll do the reactive WorkingSpace some day, but for the moment  -->
+
+      <h1>sowwy :,P</h1>
+      <h2>
+        My dear dear folio is inspired on vaporwave DE, which means it ain't
+        suppose to be seen on a phone. But I'm working on that, just give it
+        time
+      </h2>
+
+      <!-- i'll do the reactive WorkingSpace some day, but for the moment  -->
+
       <VaporwaveNavbar />
     {:else}
       <!--- need to re "instanciate" cause the AppBar--->

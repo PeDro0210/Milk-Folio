@@ -1,10 +1,10 @@
 # About
-Yo, My name is Pedro Avila (cool latino name), I really like doing programming (Game Dev, Full Stack, Distribute Systems, Little of systems programming) and software architecture.
+Yo, My name is Pedro Avila (cool latino name), I really like ricing and unix based systems, and time to time I do a programming of stupid things I like or jus trying tech
 ## Liked Techs
-- Rust: My go-to language (Love Bevy, Actix and Tauri).
-- Svelte/Ts: Best web UI Lib, if you don’t think that F*** OFF!
-- C++: The best world of low-level code and abstractions.
-... And there will be more
+- Nix: My beloved, I'll die with u
+- Rust: My go-to language (Love Bevy and Actix).
+- C: Is jus C, u know the drill
+
 ## All Language
 - Haskell
 - Rust
@@ -14,8 +14,11 @@ Yo, My name is Pedro Avila (cool latino name), I really like doing programming (
 - JavaSript
 - Python
 - C++
+- C
+- Nix-lang
 - Dart
 - Kotlin
 - C#
 - Java
+- Zig
 ... And there will be more

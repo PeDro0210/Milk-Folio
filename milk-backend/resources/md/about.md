@@ -1,11 +1,15 @@
 # About
-Yo, My name is Pedro Avila (cool latino name), I really like ricing and unix based systems, and time to time I do a programming of stupid things I like or jus trying tech
+
+Yo, My name is Pedro Avila (cool latino name), I really like ricing and unix based systems, and time to time I do a programming of stupid things I like or just trying tech.
+
 ## Liked Techs
-- Nix: My beloved, I'll die with u
-- Rust: My go-to language (Love Bevy and Actix).
-- C: Is jus C, u know the drill
+
+- Nix: My beloved, I'll die with u.
+- Rust: My goto language in any case.
+- C: Is just C, u know the drill (I fucking hated in).
 
 ## All Language
+
 - Haskell
 - Rust
 - Julia
@@ -15,10 +19,11 @@ Yo, My name is Pedro Avila (cool latino name), I really like ricing and unix bas
 - Python
 - C++
 - C
-- Nix-lang
+- Nix-DSL
 - Dart
 - Kotlin
 - C#
 - Java
 - Zig
-... And there will be more
+- Svelte (Looks cooler putting it here)
+  ... And there will be more

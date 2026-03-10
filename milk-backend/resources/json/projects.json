@@ -6,27 +6,27 @@
       "content": "https://raw.githubusercontent.com/PeDro0210/milk-link/refs/heads/main/milk-webview/src/assets/start_icon_button.gif"
     },
     {
-      "title": "Glados AI",
+      "title": "GladosAI",
       "link_redirection": "https://github.com/PeDro0210/Glados-AI",
       "content": "https://firebasestorage.googleapis.com/v0/b/fatipage-a0067.firebasestorage.app/o/milk-folio%2Fglados_milk_folio.gif?alt=media&token=8667d5d4-5388-4489-9c96-711a3d138800"
     },
     {
-      "title": "Starlight page",
+      "title": "StarlightPage",
       "content": "https://raw.githubusercontent.com/PeDro0210/Hacked-Mindwave-Page/refs/heads/main/src/assets/starlight-2.gif",
       "link_redirection": "https://github.com/PeDro0210/Hacked-Mindwave-Page"
     },
     {
-      "title": "PG Benchmark",
+      "title": "PGBenchmark",
       "content": "https://firebasestorage.googleapis.com/v0/b/fatipage-a0067.firebasestorage.app/o/milk-folio%2Fpearteto.webp?alt=media&token=de62ed46-bc4f-4026-af2c-c56ea12e111d",
       "link_redirection": "https://github.com/PeDro0210/PostgreSQL-Concurrency-BenchMark"
     },
     {
-      "title": "Clang-Flake",
+      "title": "ClangFlake",
       "content": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.icon-icons.com%2Ficons2%2F2699%2FPNG%2F512%2Fnixos_logo_icon_170910.png&f=1&nofb=1&ipt=c4b3db6b0d7d2d6d3639705ab96a7294ae9ae4dbef6a03d35f82103c85a6ee0e",
       "link_redirection": "https://github.com/PeDro0210/c-clang-base-dev-flake"
     },
     {
-      "title": "Rust Flake",
+      "title": "RustFlake",
       "content": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.icon-icons.com%2Ficons2%2F2699%2FPNG%2F512%2Fnixos_logo_icon_170910.png&f=1&nofb=1&ipt=c4b3db6b0d7d2d6d3639705ab96a7294ae9ae4dbef6a03d35f82103c85a6ee0e",
       "link_redirection": "https://github.com/PeDro0210/rust-base-dev-flake"
     },
@@ -36,18 +36,18 @@
       "link_redirection": "https://codeberg.org/PeDro0210/Yaml-Turing-Machine-Simulator"
     },
     {
-      "title": "My Nix Flakes",
+      "title": "MyNixFlakes",
       "content": "https://github.com/PeDro0210/My-Nix-Flakes/raw/master/assets/readme_resources/first_image.png",
       "link_redirection": "https://github.com/PeDro0210/My-Nix-Flakes"
     },
     {
-      "title": "Bevy Flake",
+      "title": "BevyFlake",
       "content": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.icon-icons.com%2Ficons2%2F2699%2FPNG%2F512%2Fnixos_logo_icon_170910.png&f=1&nofb=1&ipt=c4b3db6b0d7d2d6d3639705ab96a7294ae9ae4dbef6a03d35f82103c85a6ee0e",
       "link_redirection": "https://github.com/PeDro0210/bevy-core-flake"
 
     },
     {
-      "title": "Ratytracer core",
+      "title": "RaytracerCore",
       "content": "https://codeberg.org/PeDro0210/bevy_core_for_raytracer_in_bevy/media/branch/master/assets/readme/noelle.png",
       "link_redirection": "https://codeberg.org/PeDro0210/bevy_core_for_raytracer_in_bevy"
     }

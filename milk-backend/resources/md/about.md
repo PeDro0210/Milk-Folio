@@ -1,12 +1,12 @@
 # About
 
-Yo, My name is Pedro Avila (cool latino name), I really like ricing and unix based systems, and time to time I do a programming of stupid things I like or just trying tech.
+Yo, My name is Pedro Avila (cool latino name). I really like ricing and unix based systems, and time to time I do a programming of stupid things I like or just trying tech.
 
 ## Liked Techs
 
 - Nix: My beloved, I'll die with u.
 - Rust: My goto language in any case.
-- C: Is just C, u know the drill (I fucking hated in).
+- C: Is just C, u know the drill (I fucking hated it).
 
 ## All Language
 

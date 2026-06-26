@@ -6,8 +6,10 @@ function loadingHandler() {
   });
 
   let load = (loaded: boolean) => {
-    state.loaded = loaded;
-  };
+    setTimeout(() => {
+      state.loaded = loaded;
+    }, 3000)
+  }
 
   return {
     getState: () => {

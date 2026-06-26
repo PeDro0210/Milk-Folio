@@ -14,7 +14,7 @@
   };
 
   onMount(async () => {
-    handler.setLoaded;
+    handler.setLoaded();
   });
 
   $effect(() => {

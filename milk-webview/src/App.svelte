@@ -1,5 +1,4 @@
 <script lang="ts">
-  import VaporwaveNavbar from "$elements/phone/navbar/vaporwave_navbar.svelte";
   import MilkLoadingScreen from "$elements/common/milk_loading_screen.svelte";
   import VaporwaveStartmenu from "$elements/desktop/startmenu/vaporwave_startmenu.svelte";
   import VaporwaveTaskbar from "$elements/desktop/taskbar/vaporwave_taskbar.svelte";
@@ -63,16 +62,16 @@
 
       <!-- i'll do the reactive WorkingSpace some day, but for the moment  -->
 
-      <h1>sowwy :,P</h1>
-      <h2>
-        My dear dear folio is inspired on vaporwave DE, which means it ain't
-        suppose to be seen on a phone. But I'm working on that, just give it
-        time
-      </h2>
+      <div style="margin-left: 2vw;">
+        <h1>sowwy :,P</h1>
+        <h2>
+          My dear dear folio is inspired on vaporwave DE, which means it ain't
+          suppose to be seen on a phone. But I'm working on that, just give it
+          time
+        </h2>
+      </div>
 
       <!-- i'll do the reactive WorkingSpace some day, but for the moment  -->
-
-      <VaporwaveNavbar />
     {:else}
       <!--- need to re "instanciate" cause the AppBar--->
       <VaporwaveStartmenu />

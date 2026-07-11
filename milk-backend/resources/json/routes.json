@@ -1,22 +1,22 @@
 {
   "routes": [
     {
-      "image": "https://firebasestorage.googleapis.com/v0/b/fatipage-a0067.firebasestorage.app/o/milk-link%2Ftwitter%2FGG_twitter_1.gif?alt=media&token=79ca7e46-e758-4211-9286-e8de55a174c0",
+      "image": "https://github.com/PeDro0210/milk-webpages-assets-repo/blob/main/milk-folio/home.gif?raw=true",
       "title": "Home",
       "link": "/"
     },
     {
-      "image": "https://firebasestorage.googleapis.com/v0/b/fatipage-a0067.firebasestorage.app/o/milk-link%2Fgithub%2Fharuko_github_3.gif?alt=media&token=6a0983ce-da98-4ac4-8f2a-b277c4fe4981",
+      "image": "https://github.com/PeDro0210/milk-webpages-assets-repo/blob/main/milk-folio/about.gif?raw=true",
       "title": "About",
       "link": "/about"
     },
     {
-      "image": "https://firebasestorage.googleapis.com/v0/b/fatipage-a0067.firebasestorage.app/o/milk-link%2Ftwitter%2FGG_discord_3.gif?alt=media&token=98657a10-f99f-4834-93d9-2ddc7c20d12b",
+      "image": "https://github.com/PeDro0210/milk-webpages-assets-repo/blob/main/milk-folio/projects.gif?raw=true",
       "title": "Projects",
       "link": "/projects"
     },
     {
-      "image": "https://firebasestorage.googleapis.com/v0/b/fatipage-a0067.firebasestorage.app/o/milk-link%2Finstagram%2Fsakura_instagram_1.gif?alt=media&token=592582b3-4ce1-4a42-8857-f843ca716185",
+      "image": "https://github.com/PeDro0210/milk-webpages-assets-repo/blob/main/milk-folio/links.gif?raw=true",
       "title": "Links",
       "link": "https://lnk.pedro021.com"
     }

@@ -4,7 +4,7 @@ mod models;
 mod repos;
 
 use actix_cors::Cors;
-use actix_web::{App, HttpServer};
+use actix_web::{guard::Get, App, HttpServer};
 use config::Env;
 use endpoints::app_config;
 
@@ -16,19 +16,21 @@ async fn main() -> std::io::Result<()> {
     let host = config.host;
 
     let webview_url = config.webview_url;
+
     // I'll rather inject in it
     std::env::set_var("RUST_LOG", "debug");
     env_logger::init();
 
     HttpServer::new(move || {
         let cors = Cors::default()
-            .allowed_origin(&webview_url)
             .allow_any_method()
-            .allow_any_header()
-            .max_age(3600);
+            .allow_any_origin()
+            .allow_any_header();
 
         //TODO: Add configurations
-        App::new().configure(app_config).wrap(cors)
+        App::new()
+            .configure(|service_config| app_config(service_config, &config.resources_prefix))
+            .wrap(cors)
     })
     .bind((host, port))?
     .run()

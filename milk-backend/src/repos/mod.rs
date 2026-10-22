@@ -4,11 +4,10 @@ use crate::models::{Content, GeneralJson, JsonContentLinks, Link, Routes};
 
 mod utils;
 
-//TODO: Finish today before 6 PM
-
-pub fn routes_getter() -> Vec<Link> {
+pub fn routes_getter(resource_prefix: String) -> Vec<Link> {
     // All of this will
-    let route_mapped = parsed_json_content::<Routes>("/resources/json/routes.json");
+    let route_mapped =
+        parsed_json_content::<Routes>(format!("{}/json/routes.json", resource_prefix).as_str());
 
     return route_mapped.routes;
 }

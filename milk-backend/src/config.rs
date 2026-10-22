@@ -10,6 +10,9 @@ pub struct Env {
 
     #[envconfig(from = "WEBVIEW_URL")]
     pub webview_url: String,
+
+    #[envconfig(from = "BACKEND_RESOURCES_PREFIX")]
+    pub resources_prefix: String,
 }
 
 impl Env {

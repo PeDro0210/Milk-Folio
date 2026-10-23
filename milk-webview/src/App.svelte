@@ -14,6 +14,7 @@
   import "$states/global.svelte";
   import pageMeHandler from "./lib/handlers/pages/general.svelte";
   import { page_context } from "$contexts/page.svelte";
+  import VaporwavePhoneTaskbar from "$elements/phone/taskbar/vaporwave_phone_taskbar.svelte";
 
   let page_handler = pageMeHandler();
 
@@ -51,31 +52,18 @@
     <!--For the content loading-->
     <Router />
 
-    {#if window_state.window_width > 700}
-      <VaporwaveWorkingspace />
-    {/if}
+    <VaporwaveWorkingspace />
   </main>
 
   <hud>
     {#if window_state.window_width < 700}
       <VaporwaveAppbar />
-
-      <!-- i'll do the reactive WorkingSpace some day, but for the moment  -->
-
-      <div style="margin-left: 2vw;">
-        <h1>sowwy :,P</h1>
-        <h2>
-          My dear dear folio is inspired on vaporwave DE, which means it ain't
-          suppose to be seen on a phone. But I'm working on that, just give it
-          time
-        </h2>
-      </div>
-
+      <VaporwaveStartmenu />
+      <VaporwavePhoneTaskbar />
       <!-- i'll do the reactive WorkingSpace some day, but for the moment  -->
     {:else}
       <!--- need to re "instanciate" cause the AppBar--->
       <VaporwaveStartmenu />
-
       <VaporwaveTaskbar />
     {/if}
   </hud>

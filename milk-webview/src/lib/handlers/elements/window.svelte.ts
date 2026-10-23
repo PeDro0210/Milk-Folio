@@ -113,14 +113,39 @@ function windowHandler(window: Window & typeof globalThis, key: number) {
     // Won't use it for now
 
     /** changes the width of each window to the device width*/
-    //onMobileLayout: (window_type: ContentType) => {
-    //  state.window_proportion_width = window_state.window_width;
+    onMobileLayout: (window_type: ContentType) => {
 
-    //  // in case for image window
-    //  if (window_type == ContentType.Image) {
-    //    state.window_proportion_height = IMAGE_HEIGHT_MOBILE;
-    //  }
-    //}
+      let [window_proportions, appbar_proportion] = dynamic_size(window_type);
+
+      //TODO: remove burn values
+      state.app_bar_height = appbar_proportion.at(0) as number;
+      state.content_height = appbar_proportion.at(0) as number - CONTENT_OFFSET;
+
+
+      state.window_proportion_height = window_proportions.at(0) as number;
+      state.window_proportion_width = window_state.window_width;
+
+      // in case for image window
+      if (window_type == ContentType.Image) {
+        state.window_proportion_height = IMAGE_HEIGHT_MOBILE;
+      }
+    },
+
+    setWindowTransform: () => {
+      if (window_state.window_width > 700) {
+        return state.x_position + "px," + state.y_position + "px";
+      } else {
+        return "";
+      }
+
+    },
+    setWindowPosition: () => {
+      if (window_state.window_width < 700) {
+        return "relative";
+      } else {
+        return "fixed";
+      }
+    }
   };
 }
 

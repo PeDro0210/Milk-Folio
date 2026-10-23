@@ -32,11 +32,19 @@
   let state: VaporWaveWindowState = $state(handler.getState());
 
   let window_resizing = async () => {
-    handler.onChangeWindowProportion(content_type);
+    if (window_state.window_width < 700) {
+      handler.onMobileLayout(content_type);
+    } else {
+      handler.onChangeWindowProportion(content_type);
+    }
   };
 
   onMount(() => {
-    handler.onChangeWindowProportion(content_type);
+    if (window_state.window_width < 700) {
+      handler.onMobileLayout(content_type);
+    } else {
+      handler.onChangeWindowProportion(content_type);
+    }
   });
 
   $effect(() => {
@@ -53,7 +61,7 @@
 
 <div
   class="window"
-  style="width:{state.window_proportion_width}px; height:{state.window_proportion_height}px; transform: translate({state.x_position}px,{state.y_position}px); animation-duration: 3000ms"
+  style="width:{state.window_proportion_width}px; height:{state.window_proportion_height}px; transform: translate({handler.setWindowTransform()}); animation-duration: 3000ms; position:{handler.setWindowPosition()};"
   onmouseup={handler.onMoveToFront}
 >
   <!-- the button is or making the compiler happy-->

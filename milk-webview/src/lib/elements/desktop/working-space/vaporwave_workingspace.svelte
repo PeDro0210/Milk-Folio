@@ -41,11 +41,17 @@
 
 <style lang="scss">
   #desktop {
-    display: var(--dekstop-display);
     flex-direction: column;
+    height: 100%;
+    width: 100%;
     gap: 10px;
     align-items: center;
     overflow-y: hidden;
-    width: 100%;
+  }
+
+  @media only screen and (max-width: 700px) {
+    #desktop {
+      overflow-y: scroll;
+    }
   }
 </style>

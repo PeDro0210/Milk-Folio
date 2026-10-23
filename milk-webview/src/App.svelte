@@ -58,6 +58,7 @@
   <hud>
     {#if window_state.window_width < 700}
       <VaporwaveAppbar />
+
       <VaporwaveStartmenu />
       <VaporwavePhoneTaskbar />
       <!-- i'll do the reactive WorkingSpace some day, but for the moment  -->

@@ -41,6 +41,9 @@ body {
   background-size: cover;
 
 
+
+
+
   crt-filter::before {
     content: " ";
     display: block;
@@ -170,6 +173,13 @@ body {
   }
 
 
+  main {
+    width: 100vw;
+    height: 100vh;
+    margin-top: 36px;
+    margin-bottom: 10vh;
+  }
+
   /*Fuck mutli position or idunno the name of the shit*/
   hud {
     //This is just for the fucking start-menu
@@ -184,7 +194,6 @@ body {
     z-index: 10;
     pointer-events: none;
   }
-
 }
 
 text {
@@ -212,5 +221,7 @@ text {
     color: #213547;
     background-color: #ffffff;
   }
-
 }
+
+
+

@@ -14,6 +14,7 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
 }
 
 
@@ -23,7 +24,7 @@ body {
   place-items: center;
   min-width: 100%;
   min-height: 100%;
-  overflow: hidden;
+
 }
 
 #app {
@@ -42,8 +43,6 @@ body {
 
 
 
-
-
   crt-filter::before {
     content: " ";
     display: block;
@@ -56,6 +55,8 @@ body {
     z-index: 20;
     background-size: 100% 2px, 3px 100%;
     pointer-events: none;
+
+
   }
 
   #taskbar {

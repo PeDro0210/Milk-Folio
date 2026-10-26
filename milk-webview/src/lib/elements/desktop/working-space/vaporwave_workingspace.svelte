@@ -47,7 +47,7 @@
 
   @media only screen and (max-width: 700px) {
     #desktop {
-      overflow-y: scroll;
+      overflow-y: hidden;
       width: 100%;
       height: 100%;
       padding-top: 50%;

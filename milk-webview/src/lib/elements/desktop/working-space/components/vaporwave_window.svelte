@@ -228,4 +228,10 @@
       overflow: scroll;
     }
   }
+
+  @media only screen and (max-width: 700px) {
+    .window {
+      margin-left: 50%;
+    }
+  }
 </style>

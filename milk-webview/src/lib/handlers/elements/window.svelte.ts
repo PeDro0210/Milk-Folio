@@ -129,6 +129,10 @@ function windowHandler(window: Window & typeof globalThis, key: number) {
       if (window_type == ContentType.Image) {
         state.window_proportion_height = IMAGE_HEIGHT_MOBILE;
       }
+
+      if (window_type == ContentType.Markdown) {
+      }
+
     },
 
     setWindowTransform: () => {

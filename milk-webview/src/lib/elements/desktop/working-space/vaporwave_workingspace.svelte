@@ -40,21 +40,16 @@
 
 <style lang="scss">
   #desktop {
-    display: grid;
-    flex-direction: column;
     gap: 10%;
-    align-items: center;
     overflow-y: hidden;
     overflow-x: hidden;
   }
 
   @media only screen and (max-width: 700px) {
     #desktop {
-      overflow-y: scroll;
-      padding-top: 45%;
-      padding-left: 50%;
+      overflow-y: hidden;
       width: 100%;
-      height: 100vh;
+      height: 100%;
     }
   }
 </style>

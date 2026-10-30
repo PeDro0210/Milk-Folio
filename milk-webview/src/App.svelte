@@ -41,31 +41,29 @@
   });
 </script>
 
-<crt-filter>
-  <!--the loading screen will unload when all the elements are load--->
+<!--the loading screen will unload when all the elements are load--->
 
-  {#if loading_state.checkLoadedElements()}
-    <MilkLoadingScreen />
+{#if loading_state.checkLoadedElements()}
+  <MilkLoadingScreen />
+{/if}
+
+<main>
+  <!--For the content loading-->
+  <Router />
+
+  <VaporwaveWorkingspace />
+</main>
+
+<hud>
+  {#if window_state.window_width < 700}
+    <VaporwaveAppbar />
+
+    <VaporwaveStartmenu />
+    <VaporwavePhoneTaskbar />
+    <!-- i'll do the reactive WorkingSpace some day, but for the moment  -->
+  {:else}
+    <!--- need to re "instanciate" cause the AppBar--->
+    <VaporwaveStartmenu />
+    <VaporwaveTaskbar />
   {/if}
-
-  <main>
-    <!--For the content loading-->
-    <Router />
-
-    <VaporwaveWorkingspace />
-  </main>
-
-  <hud>
-    {#if window_state.window_width < 700}
-      <VaporwaveAppbar />
-
-      <VaporwaveStartmenu />
-      <VaporwavePhoneTaskbar />
-      <!-- i'll do the reactive WorkingSpace some day, but for the moment  -->
-    {:else}
-      <!--- need to re "instanciate" cause the AppBar--->
-      <VaporwaveStartmenu />
-      <VaporwaveTaskbar />
-    {/if}
-  </hud>
-</crt-filter>
+</hud>

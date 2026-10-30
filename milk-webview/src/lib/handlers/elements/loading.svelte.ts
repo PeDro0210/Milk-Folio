@@ -6,8 +6,14 @@ function loadingHandler() {
   });
 
   let load = (loaded: boolean) => {
+
     setTimeout(() => {
       state.loaded = loaded;
+
+      let root_document = document.getElementsByTagName("html")[0] as HTMLElement;
+
+      if (root_document != null) root_document.style.setProperty("--overflow-root", "visible");
+
     }, 3000)
   }
 

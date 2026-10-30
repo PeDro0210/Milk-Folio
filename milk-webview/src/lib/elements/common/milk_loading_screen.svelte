@@ -3,7 +3,7 @@
   import type { LoadingState } from "$states/declarations.svelte";
   import { loading_state } from "$states/global.svelte";
   import { fade } from "svelte/transition";
-  let options = { duration: 3000 };
+  let options = { duration: 500 };
 
   let handler = loadingHandler();
   let state: LoadingState = $state(handler.getState());

@@ -228,4 +228,12 @@
       overflow: scroll;
     }
   }
+
+  @media only screen and (max-width: 700px) {
+    .window {
+      margin-top: 70%;
+      margin-left: 50%;
+      margin-bottom: -70%;
+    }
+  }
 </style>

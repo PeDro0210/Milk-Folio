@@ -27,8 +27,13 @@ export const loading_state = $state({
     { loaded: false },
     { loaded: false },
   ],
-  setLoaded: (loaded_element: LoadableElements) =>
-    loading_state.loaded_elements[loaded_element].loaded = true,
+  setLoaded: (loaded_element: LoadableElements) => {
+    // for letting the page scrolling when finish loading
+
+
+    loading_state.loaded_elements[loaded_element].loaded = true
+  }
+  ,
   checkLoadedElements: () => {
     return loading_state.loaded_elements.every(({ loaded }) => loaded === true);
   },
